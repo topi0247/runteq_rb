@@ -1,10 +1,56 @@
-<h1>ユーザーページ</h1>
+<div class="max-w-4xl mx-auto p-6">
+  <h1 class="text-3xl font-bold mb-8 text-center">ユーザーページ</h1>
 
-<ul class="flex flex-col w-full">
-  <li class="w-full"><%= current_user.name %></li>
-  <li class="w-full"><%= current_user.x_id %></li>
-  <li class="w-full"><%= current_user.social_portfolio_url %></li>
-  <li class="w-full"><%= current_user.image_url %></li>
-</ul>
+  <article class="bg-white shadow-lg rounded-xl p-6 mb-10 border border-orange-200">
+    <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
+      <% if current_user.image_url.present? %>
+      <img src="<%= current_user.image_url %>" alt="ユーザー画像" class="w-28 h-28 rounded-full border-4 border-orange-400 shadow-md">
+      <% else %>
+      <div class="w-28 h-28 rounded-full bg-orange-100 flex items-center justify-center text-orange-500">
+        No Image
+      </div>
+      <% end %>
 
-<%= link_to '編集', edit_proposal_users_path(current_user) %>
+      <ul class="flex-1 space-y-3 text-gray-700">
+        <li><span class="font-semibold">名前:</span> <%= current_user.name %></li>
+        <li><span class="font-semibold">X ID:</span> <%= current_user.x_id %></li>
+        <li>
+          <span class="font-semibold">ポートフォリオ:</span>
+          <% if current_user.social_portfolio_url.present? %>
+          <a href="<%= current_user.social_portfolio_url %>" target="_blank" class="text-orange-500 hover:underline">
+            <%= current_user.social_portfolio_url %>
+          </a>
+          <% else %>
+          <span class="text-gray-500">未設定</span>
+          <% end %>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 編集ボタン -->
+    <div class="mt-6 text-right">
+      <%= link_to 'プロフィールを編集', edit_proposal_users_path(current_user), class: "inline-block bg-orange-500 text-white px-5 py-2 rounded-lg text-lg shadow-md hover:bg-orange-600 transition" %>
+    </div>
+  </article>
+
+  <!-- 投稿一覧 -->
+  <article class="bg-white shadow-lg rounded-xl p-6 border border-orange-200">
+    <h2 class="text-2xl font-semibold text-gray-700 mb-6">投稿一覧</h2>
+
+    <% if current_user.posts.any? %>
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <% current_user.posts.each do |post| %>
+      <li class="bg-orange-50 rounded-lg p-4 shadow-md hover:shadow-lg transition border border-orange-300">
+        <h3 class="text-lg font-semibold text-orange-700 mb-2"><%= post.title %></h3>
+        <p class="text-gray-600 text-sm line-clamp-3"><%= post.content %></p>
+        <div class="mt-3 text-right">
+          <%= link_to '詳細を見る', proposal_post_path(post), class: "text-orange-500 font-semibold hover:underline" %>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+    <% else %>
+    <p class="text-gray-500">投稿がありません。</p>
+    <% end %>
+  </article>
+</div>
