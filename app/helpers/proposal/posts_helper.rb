@@ -1,0 +1,2 @@
+module Proposal::PostsHelper
+end

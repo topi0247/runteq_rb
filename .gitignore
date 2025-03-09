@@ -38,4 +38,4 @@
 
 /node_modules
 
-/vendor/bundle
+/vendor/bundle/*
