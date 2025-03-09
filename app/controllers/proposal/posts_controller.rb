@@ -12,9 +12,7 @@ class Proposal::PostsController < Proposal::ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    Rails.logger.debug("save start")
     if @post.save!
-      Rails.logger.debug("save end")
       redirect_to proposal_post_path(@post), notice: 'プロポーザルを投稿しました！'
     end
   rescue  => e
