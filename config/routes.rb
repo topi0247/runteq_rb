@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
-  root to: "static_pages#index"
+  root to: "proposal/posts#index"
   get "auth/:provider/callback", to: "sessions#omniauth_callback"
   get "login" => "sessions#new"
   delete "logout" => "sessions#destroy"
