@@ -11,7 +11,7 @@ class Proposal::UsersController < Proposal::ApplicationController
 
   def update
     @user = current_user
-    @user.role = User.roles[:proposal]
+    @user.role = :proposal
 
     if @user.update(user_params)
       redirect_to proposal_users_path, notice: "プロポーザル情報を更新しました"

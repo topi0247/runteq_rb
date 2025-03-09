@@ -1,0 +1,12 @@
+ja:
+  enums:
+    post:
+      presentation_category:
+        lt: "LT枠"
+        proposal: "自由登壇枠"
+        invitation: "招待枠"
+      target_category:
+        beginner: "入門向け（導入～基礎）"
+        basic: "基礎・応用向け（基礎～応用）"
+        developer: "アプリ開発向け（卒業制作・個人開発・ミニアプリ）"
+        alumni: "実務向け（これからエンジニアになる卒業生向け）"

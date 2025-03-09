@@ -1,0 +1,207 @@
+<div class="container mx-auto max-w-2xl py-10 bg-white shadow-lg rounded-lg px-4 md:px-8">
+  <h1 class="text-2xl font-bold text-gray-800 mb-4 text-center">プロポーザル登録</h1>
+
+  <p class="text-gray-600 mb-6">
+    登壇応募していただきありがとうございます！<br />
+    下記のフォームを全て入力してください。
+  </p>
+
+  <h2 class="text-xl font-semibold text-gray-700 mb-3">登壇カテゴリ</h2>
+  <dl class="bg-gray-100 p-4 rounded-lg">
+    <div class="mb-2">
+      <dt class="font-medium">LT (Ruby, Railsにまつわりもの)</dt>
+      <dd class="text-gray-600 text-sm">RubyやRailsに関する内容を5分で発表する枠です。</dd>
+    </div>
+    <div class="mb-2">
+      <dt class="font-medium">自由登壇枠</dt>
+      <dd class="text-gray-600 text-sm">自由なテーマを20分で発表する登壇する枠です。</dd>
+    </div>
+    <div>
+      <dt class="font-medium">招待枠</dt>
+      <dd class="text-gray-600 text-sm">招待された方のみが登壇できる枠です。</dd>
+    </div>
+  </dl>
+
+  <%= form_with model: @post, url: proposal_posts_path, class: "mt-6 space-y-4" do |form| %>
+
+  <div>
+    <label class="block text-gray-700 font-medium">登壇カテゴリ</label>
+    <div class="mt-2 space-y-2">
+      <label class="inline-flex items-center">
+        <%= form.radio_button :presentation_category, :lt, class: "uk-radio" %>
+        <span class="ml-2">LT (Ruby, Railsにまつわるもの)</span>
+      </label>
+      <br />
+      <label class="inline-flex items-center">
+        <%= form.radio_button :presentation_category, :proposal, class: "uk-radio" %>
+        <span class="ml-2">自由登壇枠</span>
+      </label>
+      <br />
+      <label class="inline-flex items-center">
+        <%= form.radio_button :presentation_category, :invitation, class: "uk-radio" %>
+        <span class="ml-2">招待枠</span>
+      </label>
+    </div>
+  </div>
+
+
+  <div>
+    <label class="block text-gray-700 font-medium">参加者ターゲット</label>
+    <p>どのターゲット層へ向けた内容かお選びください</p>
+    <div class="mt-2 space-y-2">
+      <label class="inline-flex items-center">
+        <%= form.radio_button :target_category, :beginner, class: "uk-radio" %>
+        <span class="ml-2">入門向け（導入～基礎）</span>
+      </label>
+      <br />
+      <label class="inline-flex items-center">
+        <%= form.radio_button :target_category, :basic, class: "uk-radio" %>
+        <span class="ml-2">基礎・応用向け（基礎～応用）</span>
+      </label>
+      <br />
+      <label class="inline-flex items-center">
+        <%= form.radio_button :target_category, :developer, class: "uk-radio" %>
+        <span class="ml-2">アプリ開発向け（卒業制作・個人開発・ミニアプリ）</span>
+      </label>
+      <label class="inline-flex items-center">
+        <%= form.radio_button :target_category, :alumni, class: "uk-radio" %>
+        <span class="ml-2">実務向け（これからエンジニアになる卒業生向け）</span>
+      </label>
+    </div>
+  </div>
+
+  <div>
+    <%= form.label :title, "タイトル", class: "block text-gray-700 font-medium" %>
+    <%= form.text_field :title, class: "w-full p-2 border rounded-md", required: true %>
+  </div>
+
+  <div>
+    <%= form.label :content, "内容", class: "block text-gray-700 font-medium" %>
+    <p id="caption">200～1000文字でお書きください</p>
+    <%= form.text_area :content, class: "w-full p-2 border rounded-md", required: true %>
+  </div>
+
+  <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
+    <p class="text-gray-700 font-semibold mb-2">下記項目に承諾の上、ご応募ください</p>
+    <ul class="list-disc list-inside text-gray-600 space-y-1">
+      <li>登壇内容は自身で作成したものであり、他者の著作権を侵害していないこと</li>
+      <li>Xアカウントおよびソーシャルポートフォリオを登壇者紹介として公開されます</li>
+      <li>全体録画があるので、個別に録画NGなど対応しておりません</li>
+      <li>開催日4/26(土)に予定が入っていないこと、あるいは抑えられること</li>
+      <li>発表順は主催で決めるので、希望は添えません</li>
+    </ul>
+  </div>
+
+  <div>
+    <div class="flex justify-center items-center">
+      <%= form.check_box :rule_accepted, class: "uk-checkbox", required: true %>
+      <%= form.label :rule_accepted, "上記を理解したうえで応募する", class: "ml-2 text-gray-700" %>
+    </div>
+    <p id="rule_accepted_valid" class="hidden text-center text-red-500 font-bold">チェックが必要です</p>
+  </div>
+
+  <div class="flex flex-col text-red-500 text-start">
+    <p id="title_valid" class="hidden">タイトルを入力してください</p>
+    <p id="content_valid" class="hidden">自由登壇枠と招待枠は、200～1000文字で内容をお書きください</p>
+  </div>
+
+  <div class="mt-4 flex justify-center items-center">
+    <%= button_tag "投稿！", type: "button", id: "confirmation", class: "uk-button uk-button-primary" %>
+  </div>
+
+  <div id="modal" class="hidden fixed top-0 left-0 w-full h-full bg-black/50">
+    <section class="bg-white rounded-lg w-[80%] mx-auto mt-32 p-8">
+      <h1 class="text-center text-xl font-bold">内容確認</h1>
+      <div class="flex flex-col space-y-2 mt-4">
+        <p>タイトル: <span id="title"></span></p>
+        <p>登壇カテゴリ: <span id="presentation_category"></span></p>
+        <p>参加者ターゲット: <span id="target_category"></span></p>
+        <p>内容</p>
+        <p id="content"></p>
+        <div class="flex flex-col justify-center items-center mt-4 gap-5 md:flex-row">
+          <%= button_tag "戻る", type: "button", id: "back", class: "uk-button uk-button-secondary" %>
+          <%= form.submit "これで投稿する", class: "uk-button uk-button-primary" %>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <% end %>
+</div>
+
+
+<script>
+  $(document).ready(function() {
+
+    $("input[name='post[presentation_category]']").on("change", function() {
+      console.log($(this).next().text());
+      if ($(this).val() === "lt") {
+        $("#caption").hide();
+      } else {
+        $("#caption").show();
+      }
+    });
+
+    $($("#post_rule_accepted")).on("change", function() {
+      if ($(this).prop("checked")) {
+        $("#rule_accepted_valid").hide();
+      } else {
+        $("#rule_accepted_valid").show();
+      }
+    });
+
+    $("#back").on("click", function() {
+      $("#modal").hide();
+    });
+
+    $("#confirmation").on("click", function() {
+      let valid = true;
+
+      const title = $("input[name='post[title]']").val();
+      if (title.length === 0) {
+        $("#title_valid").show();
+        valid = false;
+      } else {
+        $("#title_valid").hide();
+      }
+
+      const presentationCategory = $("input[name='post[presentation_category]']").val();
+      const content = $("textarea[name='post[content]']").val();
+      if (content.length === 0) {
+        $("#content_valid").show();
+        valid = false;
+      } else {
+        $("#content_valid").hide();
+        if (presentationCategory !== "lt") {
+          if (content.length < 200 || content.length > 1000) {
+            $("#content_valid").show();
+            valid = false;
+          } else {
+            $("#content_valid").hide();
+          }
+        }
+      }
+
+
+      if ($("#post_rule_accepted").prop("checked")) {
+        $("#rule_accepted_valid").hide();
+      } else {
+        $("#rule_accepted_valid").show();
+        valid = false;
+      }
+
+      if (valid) {
+        $("#title").text($("input[name='post[title]']").val());
+
+        const presentationCategory = $("input[name='post[presentation_category]']:checked").closest("label").find("span").text();
+        $("#presentation_category").text(presentationCategory);
+
+        const targetCategory = $("input[name='post[target_category]']:checked").closest("label").find("span").text();
+        $("#target_category").text(targetCategory);
+
+        $("#content").text($("textarea[name='post[content]']").val());
+        $("#modal").show();
+      }
+    });
+  });
+</script>

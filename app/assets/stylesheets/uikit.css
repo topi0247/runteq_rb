@@ -1,7 +1,7 @@
 /*! UIkit 3.23.1 | https://www.getuikit.com | (c) 2014 - 2025 YOOtheme | MIT License */
 
 .uk-link {
-  color: #1e87f0;
+  color: #fa7706;
   text-decoration: none;
   cursor: pointer;
 }
@@ -122,7 +122,7 @@ a.uk-link-heading {
 .uk-link-heading a:hover,
 .uk-link-toggle:hover .uk-link-heading,
 a.uk-link-heading:hover {
-  color: #1e87f0;
+  color: #fa7706;
   text-decoration: none;
 }
 .uk-link-reset a,
@@ -326,7 +326,7 @@ a.uk-link-reset {
   color: #333 !important;
 }
 .uk-list-primary > ::marker {
-  color: #1e87f0 !important;
+  color: #fa7706 !important;
 }
 .uk-list-secondary > ::marker {
   color: #222 !important;
@@ -762,7 +762,7 @@ button.uk-icon:not(:disabled) {
   outline: 0;
   background-color: #fff;
   color: #666;
-  border-color: #1e87f0;
+  border-color: #fa7706;
 }
 .uk-input:disabled,
 .uk-select:disabled,
@@ -892,18 +892,18 @@ select.uk-form-width-xsmall {
 .uk-radio:focus {
   background-color: rgba(0, 0, 0, 0);
   outline: 0;
-  border-color: #1e87f0;
+  border-color: #fa7706;
 }
 .uk-checkbox:checked,
 .uk-checkbox:indeterminate,
 .uk-radio:checked {
-  background-color: #1e87f0;
+  background-color: #fa7706;
   border-color: transparent;
 }
 .uk-checkbox:checked:focus,
 .uk-checkbox:indeterminate:focus,
 .uk-radio:checked:focus {
-  background-color: #0e6dcd;
+  background-color: #fa7706;
 }
 .uk-radio:checked {
   background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%20%20%20%20%3Ccircle%20fill%3D%22%23fff%22%20cx%3D%228%22%20cy%3D%228%22%20r%3D%222%22%20%2F%3E%0A%3C%2Fsvg%3E");
@@ -1059,17 +1059,18 @@ select.uk-form-width-xsmall {
   border-color: #999;
 }
 .uk-button-primary {
-  background-color: #1e87f0;
+  background-color: #fa7706;
   color: #fff;
   border: 1px solid transparent;
 }
 .uk-button-primary:hover {
-  background-color: #0f7ae5;
-  color: #fff;
+  background-color: #fff;
+  color: #fa7706;
+  border: 1px solid #fa7706;
 }
 .uk-button-primary.uk-active,
 .uk-button-primary:active {
-  background-color: #0e6dcd;
+  background-color: #fa7706;
   color: #fff;
 }
 .uk-button-secondary {
@@ -1194,11 +1195,11 @@ select.uk-form-width-xsmall {
   background-color: transparent;
 }
 .uk-progress::-webkit-progress-value {
-  background-color: #1e87f0;
+  background-color: #fa7706;
   transition: width 0.6s ease;
 }
 .uk-progress::-moz-progress-bar {
-  background-color: #1e87f0;
+  background-color: #fa7706;
   transition: width 0.6s ease;
 }
 .uk-section {
@@ -1254,7 +1255,7 @@ select.uk-form-width-xsmall {
 }
 .uk-section-primary {
   --uk-inverse: light;
-  background: #1e87f0;
+  background: #fa7706;
 }
 .uk-section-secondary {
   --uk-inverse: light;
@@ -1439,7 +1440,7 @@ select.uk-form-width-xsmall {
 }
 .uk-tile-primary {
   --uk-inverse: light;
-  background-color: #1e87f0;
+  background-color: #fa7706;
 }
 .uk-tile-secondary {
   --uk-inverse: light;
@@ -1489,7 +1490,7 @@ select.uk-form-width-xsmall {
   z-index: 1;
   height: 22px;
   padding: 0 10px;
-  background: #1e87f0;
+  background: #fa7706;
   color: #fff;
   font-size: 0.875rem;
   display: flex;
@@ -1529,7 +1530,7 @@ select.uk-form-width-xsmall {
 }
 .uk-card-primary {
   --uk-inverse: light;
-  background-color: #1e87f0;
+  background-color: #fa7706;
   color: #fff;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
@@ -1537,7 +1538,7 @@ select.uk-form-width-xsmall {
   color: #fff;
 }
 .uk-card-primary.uk-card-hover:hover {
-  background-color: #1e87f0;
+  background-color: #fa7706;
   box-shadow: 0 14px 25px rgba(0, 0, 0, 0.16);
 }
 .uk-card-secondary {
@@ -1734,7 +1735,7 @@ select.uk-form-width-xsmall {
 }
 .uk-alert-primary {
   background: #d8eafc;
-  color: #1e87f0;
+  color: #fa7706;
 }
 .uk-alert-success {
   background: #edfbf6;
@@ -1783,7 +1784,7 @@ select.uk-form-width-xsmall {
   padding: 0 5px;
   border-radius: 500px;
   vertical-align: middle;
-  background: #1e87f0;
+  background: #fa7706;
   color: #fff !important;
   font-size: 11px;
   display: inline-flex;
@@ -1797,7 +1798,7 @@ select.uk-form-width-xsmall {
 .uk-label {
   display: inline-block;
   padding: 0 10px;
-  background: #1e87f0;
+  background: #fa7706;
   line-height: 1.5;
   font-size: 0.875rem;
   color: #fff;
@@ -1971,7 +1972,7 @@ select.uk-form-width-xsmall {
 }
 .uk-search-default .uk-search-input:focus {
   background-color: rgba(0, 0, 0, 0);
-  border-color: #1e87f0;
+  border-color: #fa7706;
 }
 .uk-search-default .uk-search-icon {
   padding-left: 10px;
@@ -1996,7 +1997,7 @@ select.uk-form-width-xsmall {
 }
 .uk-search-navbar .uk-search-input:focus {
   background-color: #fff;
-  border-color: #1e87f0;
+  border-color: #fa7706;
 }
 .uk-search-navbar .uk-search-icon {
   padding-left: 10px;
@@ -2022,7 +2023,7 @@ select.uk-form-width-xsmall {
 }
 .uk-search-medium .uk-search-input:focus {
   background-color: rgba(0, 0, 0, 0);
-  border-color: #1e87f0;
+  border-color: #fa7706;
 }
 .uk-search-medium .uk-search-icon {
   padding-left: 12px;
@@ -2048,7 +2049,7 @@ select.uk-form-width-xsmall {
 }
 .uk-search-large .uk-search-input:focus {
   background-color: rgba(0, 0, 0, 0);
-  border-color: #1e87f0;
+  border-color: #fa7706;
 }
 .uk-search-large .uk-search-icon {
   padding-left: 20px;
@@ -2606,7 +2607,7 @@ select.uk-form-width-xsmall {
   display: block;
 }
 .uk-notification-message-primary {
-  color: #1e87f0;
+  color: #fa7706;
 }
 .uk-notification-message-success {
   color: #32d296;
@@ -3573,7 +3574,7 @@ ul.uk-nav-sub {
   color: #666;
 }
 .uk-subnav-pill > .uk-active > a {
-  background-color: #1e87f0;
+  background-color: #fa7706;
   color: #fff;
 }
 .uk-subnav > .uk-disabled > a {
@@ -3676,7 +3677,7 @@ ul.uk-nav-sub {
 }
 .uk-tab > .uk-active > a {
   color: #333;
-  border-color: #1e87f0;
+  border-color: #fa7706;
 }
 .uk-tab > .uk-disabled > a {
   color: #999;
@@ -4847,7 +4848,7 @@ ul.uk-nav-sub {
   color: #333 !important;
 }
 .uk-text-primary {
-  color: #1e87f0 !important;
+  color: #fa7706 !important;
 }
 .uk-text-secondary {
   color: #222 !important;
@@ -4865,8 +4866,8 @@ ul.uk-nav-sub {
   -webkit-background-clip: text;
   color: transparent !important;
   display: inline-block;
-  background-color: #1e87f0;
-  background-image: linear-gradient(90deg, #1e87f0 0, #411ef0 100%);
+  background-color: #fa7706;
+  background-image: linear-gradient(90deg, #fa7706 0, #411ef0 100%);
 }
 .uk-text-left {
   text-align: left !important;
@@ -5105,7 +5106,7 @@ iframe[uk-cover] {
   background-color: #f8f8f8;
 }
 .uk-background-primary {
-  background-color: #1e87f0;
+  background-color: #fa7706;
 }
 .uk-background-secondary {
   background-color: #222;

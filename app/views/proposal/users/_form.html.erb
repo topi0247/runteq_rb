@@ -33,10 +33,10 @@
       const xId = $("input[name='user[x_id]']").val();
       let valid = true;
       if (!xId.startsWith("@")) {
-        $("#x_id").removeClass("hidden");
+        $("#x_id").show();
         valid = false;
       } else {
-        $("#x_id").addClass("hidden");
+        $("#x_id").hide();
       }
 
       const socialPortfolioUrl = $("input[name='user[social_portfolio_url]']").val();
@@ -56,7 +56,6 @@
           $("#sp_public_check").addClass("hidden");
         }
       }
-      console.log(valid);
 
       return valid;
     });

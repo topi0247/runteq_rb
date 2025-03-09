@@ -9,13 +9,11 @@ class SessionsController < ApplicationController
       github_username = auth.info.nickname
 
       tmp = GithubOrgMemberCheckService.new(github_username: github_username)
-      Rails.logger.debug "tmp: #{tmp.inspect}"
 
       unless GithubOrgMemberCheckService.new(github_username: github_username).member?
         redirect_to root_path, alert: "RUNTEQメンバーではありません", status: 404
         return
       end
-
 
       user = User.find_by(email: auth.info.email)
       if user.nil?
@@ -28,7 +26,6 @@ class SessionsController < ApplicationController
       end
 
       session[:user_id] = user.id
-      session[:role] = user.role
       redirect_to root_path, notice: "ログインしました"
     rescue => e
       Rails.logger.error "SessionsController Error: #{e.message}"
