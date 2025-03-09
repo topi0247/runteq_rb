@@ -27,7 +27,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem 'dotenv-rails', '~> 2.6'
-gem 'omniauth'
+gem "dotenv-rails", "~> 2.6"
+gem "omniauth"
 gem "omniauth-rails_csrf_protection"
-gem 'omniauth-github', '~> 2.0.0'
+gem "omniauth-github", "~> 2.0.0"

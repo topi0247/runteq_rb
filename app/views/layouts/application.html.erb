@@ -14,17 +14,28 @@
   <link rel="icon" href="/icon.png" type="image/png">
   <link rel="apple-touch-icon" href="/icon.png">
 
-  <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
-  <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
-
   <link href="https://use.fontawesome.com/releases/v6.2.0/css/all.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.23.1/dist/css/uikit.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.23.1/dist/js/uikit.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/uikit@3.23.1/dist/js/uikit-icons.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <%= stylesheet_link_tag "application", "uikit", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
 </head>
 
 <body>
-  <%= yield %>
+  <div class="flex flex-col min-h-screen bg-orange-200">
+    <header class="bg-orange-500 text-white mx-auto p-4 w-full">
+      <%= render "shared/header" %>
+    </header>
+
+    <main class="container mx-auto p-4 grow">
+      <%= yield %>
+    </main>
+
+    <footer class="bg-orange-500 text-white text-end p-4">
+      <p>© 2025 RUNTEQ.rb</p>
+    </footer>
+  </div>
 </body>
 
 </html>

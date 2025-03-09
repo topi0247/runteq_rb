@@ -1,0 +1,18 @@
+<div class="container m-auto flex justify-between items-center text-white">
+  <h1 class="text-xl font-semibold"><%= link_to "RUNTEQ.rb", root_path %></h1>
+
+  <% role = User.roles[current_user.role] %>
+  <nav>
+    <ul>
+      <% if role == User.roles[:general] %>
+      <li><%= link_to "プロポーザルに登録する", new_proposal_users_path %></li>
+      <% elsif role == User.roles[:proposal] %>
+      <li><%= link_to "マイページ", proposal_users_path %></li>
+      <% end %>
+
+      <% if role == User.roles[:admin] %>
+      <li><%= link_to "#", "管理者画面" %></li>
+      <% end %>
+    </ul>
+  </nav>
+</div>

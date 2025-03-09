@@ -1,4 +1,4 @@
-class Proposal::PostsController < ApplicationController
+class Proposal::PostsController < Proposal::ApplicationController
   def show; end
 
   def new; end

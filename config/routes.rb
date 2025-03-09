@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   delete "logout" => "sessions#destroy"
 
   namespace :proposal do
+    root to: "posts#index"
     resources :posts, only: %i[show new create]
-    resources :users, only: %i[show edit update]
+    resource :users, only: %i[new show edit update]
   end
 end

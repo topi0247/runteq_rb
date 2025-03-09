@@ -1,0 +1,64 @@
+<div class="field">
+  <%= form.label :name %>
+  <%= form.text_field :name, required: true %>
+</div>
+
+<div class="field">
+  <%= form.label :x_id, required: true %>
+  <%= form.text_field :x_id, required: true %>
+  <p id="x_id" class="text-red-500 bg-white p-2 hidden">@からのIDを入力してください</p>
+</div>
+
+<div class="field">
+  <%= form.label :social_portfolio_url, required: true %>
+  <%= form.url_field :social_portfolio_url, required: true %>
+  <div id="sp_check" class="text-red-500 bg-white p-2 hidden">
+    <p id="sp_url_check" class="hidden">ご自身のソーシャルポートフォリオのURLを入力してください</p>
+    <p id="sp_public_check" class="hidden">正しいURLになってないか公開用URLになってないようです</p>
+  </div>
+</div>
+
+<div class="field">
+  <%= form.label :image_url %>
+  <%= form.url_field :image_url, required: true %>
+</div>
+
+<div class="actions">
+  <%= form.submit "更新", class: "uk-button uk-button-default " %>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $("form").on("submit", function() {
+      const xId = $("input[name='user[x_id]']").val();
+      let valid = true;
+      if (!xId.startsWith("@")) {
+        $("#x_id").removeClass("hidden");
+        valid = false;
+      } else {
+        $("#x_id").addClass("hidden");
+      }
+
+      const socialPortfolioUrl = $("input[name='user[social_portfolio_url]']").val();
+      if (!socialPortfolioUrl.startsWith("https://school.runteq.jp/social_portfolios/")) {
+        $("#sp_check").removeClass("hidden");
+        $("#sp_url_check").removeClass("hidden");
+        valid = false;
+      } else {
+        const lastId = socialPortfolioUrl.split("/").pop();
+        if (!(lastId && 2 <= lastId.length && lastId.length <= 20)) {
+          $("#sp_check").removeClass("hidden");
+          $("#sp_public_check").removeClass("hidden");
+          valid = false;
+        } else {
+          $("#sp_check").addClass("hidden");
+          $("#sp_url_check").addClass("hidden");
+          $("#sp_public_check").addClass("hidden");
+        }
+      }
+      console.log(valid);
+
+      return valid;
+    });
+  });
+</script>

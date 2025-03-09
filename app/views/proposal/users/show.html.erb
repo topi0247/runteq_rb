@@ -1,0 +1,10 @@
+<h1>ユーザーページ</h1>
+
+<ul class="flex flex-col w-full">
+  <li class="w-full"><%= current_user.name %></li>
+  <li class="w-full"><%= current_user.x_id %></li>
+  <li class="w-full"><%= current_user.social_portfolio_url %></li>
+  <li class="w-full"><%= current_user.image_url %></li>
+</ul>
+
+<%= link_to '編集', edit_proposal_users_path(current_user) %>
