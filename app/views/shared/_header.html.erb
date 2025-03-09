@@ -2,7 +2,6 @@
   <h1 class="text-xl font-semibold"><%= link_to "RUNTEQ.rb", root_path %></h1>
 
   <% role = User.roles[current_user&.role] %>
-  <%= current_user&.role %>
   <nav>
     <ul class="flex space-x-4">
       <% if role == User.roles[:general] %>
