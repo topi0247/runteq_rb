@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
         invitation_nicknames = ENV['INVITATION_NICKNAMES'].split(',')
         if invitation_nicknames.include?(github_username)
           user.role = User.roles[:invitation]
-        else
+        end
         user.save!
       end
 
