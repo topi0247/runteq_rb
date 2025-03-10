@@ -1,0 +1,2 @@
+module Invitations::ApplicationHelper
+end

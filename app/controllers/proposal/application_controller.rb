@@ -1,5 +1,4 @@
 class Proposal::ApplicationController < ApplicationController
-
   def require_login
     unless current_user
       redirect_to login_path

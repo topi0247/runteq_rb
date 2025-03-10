@@ -8,5 +8,5 @@ class User < ApplicationRecord
   validates :social_portfolio_url, format: { with: URI::DEFAULT_PARSER.make_regexp }, allow_nil: true, uniqueness: true
   validates :image_url, format: { with: URI::DEFAULT_PARSER.make_regexp }, allow_nil: true, uniqueness: true
 
-  enum role: { general: 0, proposal: 1, admin: 2 }, _default: 0
+  enum role: { general: 0, proposal: 1, invitation: 2 ,admin: 3 }, _default: 0
 end

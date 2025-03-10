@@ -11,4 +11,10 @@ Rails.application.routes.draw do
     resources :posts, only: %i[show new create]
     resource :users, only: %i[edit update]
   end
+
+  namespace :invitations do
+    root to: "posts#index"
+    resources :posts, only: %i[show new create]
+    resource :users, only: %i[edit update]
+  end
 end

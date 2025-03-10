@@ -22,8 +22,13 @@ class SessionsController < ApplicationController
         user = User.new do |u|
           u.name = auth.info.name
           u.email = auth.info.email
-          u.role = User.roles[:general]
+          user.role = User.roles[:general]
         end
+
+        invitation_nicknames = ENV['INVITATION_NICKNAMES'].split(',')
+        if invitation_nicknames.include?(github_username)
+          user.role = User.roles[:invitation]
+        else
         user.save!
       end
 

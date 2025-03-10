@@ -1,4 +1,4 @@
-class Proposal::UsersController < Proposal::ApplicationController
+class Invitations::UsersController < ApplicationController
   def show
     @user = current_user
     @posts = current_user.posts
@@ -10,7 +10,6 @@ class Proposal::UsersController < Proposal::ApplicationController
 
   def update
     @user = current_user
-    @user.role = :proposal
 
     if @user.update(user_params)
       redirect_to proposal_users_path(@user), notice: "ユーザー情報を更新しました"
