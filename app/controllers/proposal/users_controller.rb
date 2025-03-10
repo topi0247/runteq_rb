@@ -1,8 +1,9 @@
 class Proposal::UsersController < Proposal::ApplicationController
-  skip_before_action :require_login, only: [:new, :update]
+  skip_before_action :require_login, only: [:update]
 
-  def new
+  def show
     @user = current_user
+    @posts = current_user.posts
   end
 
   def edit
@@ -14,7 +15,7 @@ class Proposal::UsersController < Proposal::ApplicationController
     @user.role = :proposal
 
     if @user.update(user_params)
-      redirect_to proposal_users_path, notice: "プロポーザル情報を更新しました"
+      redirect_to proposal_users_path(@user), notice: "プロポーザル情報を更新しました"
     else
       render :edit
     end
