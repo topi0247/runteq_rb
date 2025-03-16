@@ -5,8 +5,8 @@
   <nav>
     <ul class="flex space-x-4">
       <% if role == User.roles[:general] %>
-      <li><%= link_to "プロポーザルに登録する", new_proposal_users_path %></li>
-      <% elsif role == User.roles[:proposal] %>
+      <li><%= link_to "プロポーザルに登録する", edit_proposal_users_path(current_user) %></li>
+      <% elsif role == User.roles[:proposal] || role == User.roles[:admin] %>
       <li><%= link_to "登壇応募", new_proposal_post_path %></li>
       <li><%= link_to "マイページ", proposal_root_path %></li>
       <% end %>

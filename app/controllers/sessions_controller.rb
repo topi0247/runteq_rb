@@ -8,8 +8,6 @@ class SessionsController < ApplicationController
       auth = request.env['omniauth.auth']
       github_username = auth.info.nickname
 
-      tmp = GithubOrgMemberCheckService.new(github_username: github_username)
-
       unless GithubOrgMemberCheckService.new(github_username: github_username).member?
         redirect_to root_path, alert: "RUNTEQメンバーではありません", status: 404
         return
@@ -22,7 +20,7 @@ class SessionsController < ApplicationController
         user = User.new do |u|
           u.name = auth.info.name
           u.email = auth.info.email
-          user.role = User.roles[:general]
+          u.role = User.roles[:general]
         end
 
         invitation_nicknames = ENV['INVITATION_NICKNAMES'].split(',')
