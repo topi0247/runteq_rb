@@ -1,4 +1,6 @@
 class Proposal::UsersController < Proposal::ApplicationController
+  skip_before_action :require_user_registration, only: [:edit]
+
   def show
     @user = current_user
     @posts = current_user.posts
