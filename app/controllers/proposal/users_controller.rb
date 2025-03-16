@@ -15,7 +15,7 @@ class Proposal::UsersController < Proposal::ApplicationController
     if @user.update(user_params)
       redirect_to proposal_root_path, notice: "ユーザー情報を更新しました"
     else
-      render :edit
+      render :edit, status: 422
     end
   end
 
