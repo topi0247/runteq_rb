@@ -102,14 +102,14 @@
   </div>
 
   <div id="modal" class="hidden fixed top-0 left-0 w-full h-full bg-black/50">
-    <section class="bg-white rounded-lg w-[80%] mx-auto mt-32 p-8">
+    <section class="bg-white rounded-lg w-[80%] h-[80%] overflow-y-auto mx-auto mt-32 p-8">
       <h1 class="text-center text-xl font-bold">内容確認</h1>
       <div class="flex flex-col space-y-2 mt-4">
         <p>タイトル: <span id="title"></span></p>
         <p>登壇カテゴリ: <span id="presentation_category"></span></p>
         <p>参加者ターゲット: <span id="target_category"></span></p>
         <p>内容</p>
-        <p id="content"></p>
+        <p id="content" class="whitespace-pre-wrap"></p>
         <div class="flex flex-col justify-center items-center mt-4 gap-5 md:flex-row">
           <%= button_tag "戻る", type: "button", id: "back", class: "uk-button uk-button-secondary" %>
           <%= form.submit "これで投稿する", class: "uk-button uk-button-primary" %>
