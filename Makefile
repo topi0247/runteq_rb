@@ -23,10 +23,10 @@ setup:
 container:
 	$(DOCKER_COMPOSE) exec web bash
 
-.PHONY: db:create
+.PHONY:	db/create
 db-create:
 	$(DOCKER_COMPOSE) exec web bin/rails db:create
 
-.PHONY: db:migrate
+.PHONY:	db/migrate
 db-migrate:
 	$(DOCKER_COMPOSE) exec web bin/rails db:migrate
