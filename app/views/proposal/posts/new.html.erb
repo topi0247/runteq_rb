@@ -60,12 +60,14 @@
   <div>
     <%= form.label :title, "タイトル", class: "block text-gray-700 font-medium" %>
     <%= form.text_field :title, class: "w-full p-2 border rounded-md", required: true %>
+    <p class="text-end">文字数 <span id="title-char-count" class="text-lg font-semibold">0</span>/25</p>
   </div>
 
   <div>
     <%= form.label :content, "内容", class: "block text-gray-700 font-medium" %>
     <p id="caption">LT枠は1000文字以下で、自由登壇枠は200～1000文字でお書きください</p>
     <%= form.text_area :content, class: "w-full p-2 border rounded-md", required: true %>
+    <p class="text-end">文字数 <span id="content-char-count" class="text-lg font-semibold">0</span>/1000</p>
   </div>
 
   <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
@@ -88,7 +90,8 @@
   </div>
 
   <div class="flex flex-col text-red-500 text-start">
-    <p id="title_valid" class="hidden">タイトルを入力してください</p>
+    <p id="title_valid_0" class="hidden">タイトルを入力してください</p>
+    <p id="title_valid_1" class="hidden">タイトルは25文字以下で入力してください</p>
     <p id="content_valid_0" class="hidden">内容を入力してください</p>
     <p id="content_valid_1" class="hidden">LT枠は、1000文字以下で内容が伝わるようにお書きください。</p>
     <p id="content_valid_2" class="hidden">自由登壇枠と招待枠は、200～1000文字で内容をお書きください。</p>
@@ -121,6 +124,30 @@
 
 <script>
   $(document).ready(function() {
+    $("input[name='post[title]']").on("input", function() {
+      const title = $(this).val();
+      $("#title-char-count").text(title.length);
+      if (title.length > 25) {
+        $(this).addClass("text-red-500");
+        $("#title-char-count").addClass("text-red-500");
+      } else {
+        $(this).removeClass("text-red-500");
+        $("#title-char-count").removeClass("text-red-500");
+      }
+    });
+
+    $("textarea[name='post[content]']").on("input", function() {
+      const content = $(this).val();
+      $("#content-char-count").text(content.length);
+      if (content.length > 1000) {
+        $(this).addClass("text-red-500");
+        $("#content-char-count").addClass("text-red-500");
+      } else {
+        $(this).removeClass("text-red-500");
+        $("#content-char-count").removeClass("text-red-500");
+      }
+    });
+
     $($("#post_rule_accepted")).on("change", function() {
       if ($(this).prop("checked")) {
         $("#rule_accepted_valid").hide();
@@ -138,20 +165,27 @@
 
       const title = $("input[name='post[title]']").val();
       if (title.length === 0) {
-        $("#title_valid").show();
+        $("#title_valid_0").show();
         valid = false;
       } else {
-        $("#title_valid").hide();
+        $("#title_valid_0").hide();
       }
 
-      const presentationCategory = $("input[name='post[presentation_category]']").val();
+      if (title.length > 25) {
+        $("#title_valid_1").show();
+        valid = false;
+      } else {
+        $("#title_valid_1").hide();
+      }
+
+      const presentationCategory = $("input[name='post[presentation_category]']:checked").val();
+      console.log(presentationCategory);
       const content = $("textarea[name='post[content]']").val();
       if (content.length === 0) {
         $("#content_valid_0").show();
         valid = false;
       } else {
         $("#content_valid_0").hide();
-        console.log(presentationCategory);
         if (presentationCategory === "lt") {
           if (content.length > 1000) {
             $("#content_valid_1").show();
