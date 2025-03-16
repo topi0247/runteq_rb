@@ -13,9 +13,10 @@ class Proposal::UsersController < Proposal::ApplicationController
     @user.role = :proposal
 
     if @user.update(user_params)
-      redirect_to proposal_root_path, notice: "ユーザー情報を更新しました"
+      redirect_to proposal_root_path, flash: { success: "ユーザー情報を更新しました" }
     else
-      render :edit
+      flash.now[:error] = "ユーザー情報の更新に失敗しました"
+      render :edit, status: :unprocessable_entity
     end
   end
 
