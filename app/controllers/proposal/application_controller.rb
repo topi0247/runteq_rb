@@ -1,12 +1,9 @@
 class Proposal::ApplicationController < ApplicationController
-  def require_login
-    unless current_user
-      redirect_to login_path
-      return
-    end
+  before_action :require_user_registration
 
-    if current_user.role == User.roles[:general]
-      redirect_to new_proposal_users_path, alert: "プロポーザルの登録をお願いします"
+  def require_user_registration
+    if current_user.general?
+      redirect_to edit_proposal_users_path, flash: { alert: "ユーザー情報の登録をお願いします" }
     end
   end
 end
