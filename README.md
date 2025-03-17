@@ -75,7 +75,7 @@ make down
 # build
 make build
 # コンテナに入る
-make bash
+make container
 # db:create
 make db-create
 # db:migrate
