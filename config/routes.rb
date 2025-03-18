@@ -17,4 +17,8 @@ Rails.application.routes.draw do
     resources :posts, only: %i[show new create]
     resource :users, only: %i[edit update]
   end
+
+  namespace :admin do
+    root to: "users#index"
+  end
 end
