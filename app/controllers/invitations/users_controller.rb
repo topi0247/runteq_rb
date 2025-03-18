@@ -12,7 +12,7 @@ class Invitations::UsersController < ApplicationController
     @user = current_user
 
     if @user.update(user_params)
-      redirect_to proposal_users_path(@user), notice: "ユーザー情報を更新しました"
+      redirect_to invitations_root_path, notice: "ユーザー情報を更新しました"
     else
       render :edit
     end
