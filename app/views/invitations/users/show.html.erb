@@ -15,7 +15,7 @@
         <li><span class="font-semibold">名前:</span> <%= current_user.name %></li>
         <li><span class="font-semibold">X ID:</span> <%= current_user.x_id %></li>
         <li>
-          <span class="font-semibold">ポートフォリオ:</span>
+          <span class="font-semibold">ソーシャルポートフォリオ:</span>
           <% if current_user.social_portfolio_url.present? %>
           <a href="<%= current_user.social_portfolio_url %>" target="_blank" class="text-orange-500 hover:underline">
             <%= current_user.social_portfolio_url %>
