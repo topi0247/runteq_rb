@@ -7,3 +7,14 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+50.times do |i|
+  user = User.find_or_initialize_by(email: "test#{i}@example.com") do |u|
+    u.name = "test#{i}"
+    u.x_id = "@test#{i}"
+    u.social_portfolio_url = "https://example.com/#{i}"
+    u.image_url = "https://placehold.jp/500x500.png?hoge=#{i}"
+    u.role = User.roles.keys.sample
+  end
+  user.save!
+end
