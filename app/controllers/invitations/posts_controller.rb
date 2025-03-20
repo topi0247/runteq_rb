@@ -1,4 +1,4 @@
-class Invitations::PostsController < ApplicationController
+class Invitations::PostsController < Invitations::ApplicationController
   def show
     @post = current_user.posts.find_by(id: params[:id])
     if @post.nil?
