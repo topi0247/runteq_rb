@@ -38,7 +38,7 @@
     <% if current_user.posts.any? %>
     <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <% current_user.posts.each do |post| %>
-      <%= render 'shared/post', post: post %>
+      <%= render 'shared/post', post: post, detail_path: proposal_post_path(post) %>
       <% end %>
     </ul>
     <% else %>

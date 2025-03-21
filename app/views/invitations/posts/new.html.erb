@@ -14,7 +14,7 @@
     </div>
     <div class="mb-2">
       <dt class="font-medium">自由登壇枠</dt>
-      <dd class="text-gray-600 text-sm">自由なテーマを20分で発表する登壇する枠です。</dd>
+      <dd class="text-gray-600 text-sm">自由なテーマを20分で発表する枠です。</dd>
     </div>
     <div>
       <dt class="font-medium">招待枠</dt>
@@ -22,43 +22,40 @@
     </div>
   </dl>
 
-  <%= form_with model: @post, url: proposal_posts_path, class: "mt-6 space-y-4" do |form| %>
+  <h2 class="text-xl font-semibold text-gray-700 mb-3">NG話題</h2>
+  <p class="text-gray-600 mb-4">以下の話題はNGとさせていただきます。</p>
+  <ul class="list-disc list-inside text-gray-600 space-y-1">
+    <li>RubyやRails以外の言語やフレームワークに焦点を当てた内容</li>
+    <li>AI系</li>
+    <li>エンジニアとして働いている方向けの高度な内容</li>
+  </ul>
 
-  <div>
+  <hr class="my-6 border-gray-300" />
+  <h2 class="text-xl font-semibold text-gray-700 my-3">応募フォーム</h2>
+  <%= form_with model: @post, url: invitations_posts_path, class: "mt-6 space-y-4" do |form| %>
+
+  <div class="my-4">
     <label class="block text-gray-700 font-medium">登壇カテゴリ</label>
-    <div class="mt-2 space-y-2">
+    <div class="mt-2 space-y-2 flex flex-col">
       <label class="inline-flex items-center">
-        <%= form.radio_button :presentation_category, :lt, class: "uk-radio" %>
-        <span class="ml-2">LT (Ruby, Railsにまつわるもの)</span>
-      </label>
-      <br />
-      <label class="inline-flex items-center">
-        <%= form.radio_button :presentation_category, :proposal, class: "uk-radio" %>
-        <span class="ml-2">自由登壇枠</span>
-      </label>
-      <br />
-      <label class="inline-flex items-center">
-        <%= form.radio_button :presentation_category, :invitation, class: "uk-radio" %>
+        <%= form.radio_button :presentation_category, :invitation, class: "uk-radio", checked: true %>
         <span class="ml-2">招待枠</span>
       </label>
     </div>
   </div>
 
-
-  <div>
+  <div class="my-4">
     <label class="block text-gray-700 font-medium">参加者ターゲット</label>
     <p>どのターゲット層へ向けた内容かお選びください</p>
-    <div class="mt-2 space-y-2">
+    <div class="mt-2 space-y-2 flex flex-col">
       <label class="inline-flex items-center">
         <%= form.radio_button :target_category, :beginner, class: "uk-radio" %>
-        <span class="ml-2">入門向け（導入～基礎）</span>
+        <span class="ml-2">入門向け（導入STEP～基礎STEP）</span>
       </label>
-      <br />
       <label class="inline-flex items-center">
         <%= form.radio_button :target_category, :basic, class: "uk-radio" %>
-        <span class="ml-2">基礎・応用向け（基礎～応用）</span>
+        <span class="ml-2">基礎・応用向け（基礎STEP～応用STEP）</span>
       </label>
-      <br />
       <label class="inline-flex items-center">
         <%= form.radio_button :target_category, :developer, class: "uk-radio" %>
         <span class="ml-2">アプリ開発向け（卒業制作・個人開発・ミニアプリ）</span>
@@ -73,12 +70,14 @@
   <div>
     <%= form.label :title, "タイトル", class: "block text-gray-700 font-medium" %>
     <%= form.text_field :title, class: "w-full p-2 border rounded-md", required: true %>
+    <p class="text-end">文字数 <span id="title-char-count" class="text-lg font-semibold">0</span>/25</p>
   </div>
 
   <div>
     <%= form.label :content, "内容", class: "block text-gray-700 font-medium" %>
     <p id="caption">200～1000文字でお書きください</p>
-    <%= form.text_area :content, class: "w-full p-2 border rounded-md", required: true %>
+    <%= form.text_area :content, class: "w-full p-2 border rounded-md h-100", required: true %>
+    <p class="text-end">文字数 <span id="content-char-count" class="text-lg font-semibold">0</span>/1000</p>
   </div>
 
   <div class="bg-gray-50 p-4 rounded-lg border border-gray-300">
@@ -87,8 +86,9 @@
       <li>登壇内容は自身で作成したものであり、他者の著作権を侵害していないこと</li>
       <li>Xアカウントおよびソーシャルポートフォリオを登壇者紹介として公開されます</li>
       <li>全体録画があるので、個別に録画NGなど対応しておりません</li>
-      <li>開催日4/26(土)に予定が入っていないこと、あるいは抑えられること</li>
+      <li>開催日4/26(土)の直前リハ及び本番に参加できること</li>
       <li>発表順は主催で決めるので、希望は添えません</li>
+      <li class="text-red-500 font-bold">一度投稿したものは編集・削除できません。当日参加ができなくなったなどの場合は主催にご連絡ください。編集の要望は受け付けておりませんのでお気をつけください。</li>
     </ul>
   </div>
 
@@ -101,23 +101,25 @@
   </div>
 
   <div class="flex flex-col text-red-500 text-start">
-    <p id="title_valid" class="hidden">タイトルを入力してください</p>
-    <p id="content_valid" class="hidden">自由登壇枠と招待枠は、200～1000文字で内容をお書きください</p>
+    <p id="title_valid_0" class="hidden">タイトルを入力してください</p>
+    <p id="title_valid_1" class="hidden">タイトルは25文字以下で入力してください</p>
+    <p id="content_valid_0" class="hidden">内容を入力してください</p>
+    <p id="content_valid_1" class="hidden">200～1000文字で内容をお書きください。</p>
   </div>
 
   <div class="mt-4 flex justify-center items-center">
-    <%= button_tag "投稿！", type: "button", id: "confirmation", class: "uk-button uk-button-primary" %>
+    <%= button_tag "確認", type: "button", id: "confirmation", class: "uk-button uk-button-primary" %>
   </div>
 
   <div id="modal" class="hidden fixed top-0 left-0 w-full h-full bg-black/50">
-    <section class="bg-white rounded-lg w-[80%] mx-auto mt-32 p-8">
+    <section class="bg-white rounded-lg w-[80%] h-[80%] overflow-y-auto mx-auto mt-32 p-8">
       <h1 class="text-center text-xl font-bold">内容確認</h1>
       <div class="flex flex-col space-y-2 mt-4">
         <p>タイトル: <span id="title"></span></p>
-        <p>登壇カテゴリ: <span id="presentation_category"></span></p>
+        <p>登壇カテゴリ: 招待枠</p>
         <p>参加者ターゲット: <span id="target_category"></span></p>
         <p>内容</p>
-        <p id="content"></p>
+        <p id="content" class="whitespace-pre-wrap"></p>
         <div class="flex flex-col justify-center items-center mt-4 gap-5 md:flex-row">
           <%= button_tag "戻る", type: "button", id: "back", class: "uk-button uk-button-secondary" %>
           <%= form.submit "これで投稿する", class: "uk-button uk-button-primary" %>
@@ -132,13 +134,27 @@
 
 <script>
   $(document).ready(function() {
-
-    $("input[name='post[presentation_category]']").on("change", function() {
-      console.log($(this).next().text());
-      if ($(this).val() === "lt") {
-        $("#caption").hide();
+    $("input[name='post[title]']").on("input", function() {
+      const title = $(this).val();
+      $("#title-char-count").text(title.length);
+      if (title.length > 25) {
+        $(this).addClass("text-red-500");
+        $("#title-char-count").addClass("text-red-500");
       } else {
-        $("#caption").show();
+        $(this).removeClass("text-red-500");
+        $("#title-char-count").removeClass("text-red-500");
+      }
+    });
+
+    $("textarea[name='post[content]']").on("input", function() {
+      const content = $(this).val();
+      $("#content-char-count").text(content.length);
+      if (content.length > 1000) {
+        $(this).addClass("text-red-500");
+        $("#content-char-count").addClass("text-red-500");
+      } else {
+        $(this).removeClass("text-red-500");
+        $("#content-char-count").removeClass("text-red-500");
       }
     });
 
@@ -159,28 +175,32 @@
 
       const title = $("input[name='post[title]']").val();
       if (title.length === 0) {
-        $("#title_valid").show();
+        $("#title_valid_0").show();
         valid = false;
       } else {
-        $("#title_valid").hide();
+        $("#title_valid_0").hide();
       }
 
-      const presentationCategory = $("input[name='post[presentation_category]']").val();
+      if (title.length > 25) {
+        $("#title_valid_1").show();
+        valid = false;
+      } else {
+        $("#title_valid_1").hide();
+      }
+
       const content = $("textarea[name='post[content]']").val();
       if (content.length === 0) {
-        $("#content_valid").show();
+        $("#content_valid_0").show();
         valid = false;
       } else {
-        if (presentationCategory !== "lt") {
-          if (content.length < 200 || content.length > 1000) {
-            $("#content_valid").show();
-            valid = false;
-          } else {
-            $("#content_valid").hide();
-          }
+        $("#content_valid_0").hide();
+        if (content.length < 200 || content.length > 1000) {
+          $("#content_valid_1").show();
+          valid = false;
+        } else {
+          $("#content_valid_1").hide();
         }
       }
-
 
       if ($("#post_rule_accepted").prop("checked")) {
         $("#rule_accepted_valid").hide();
@@ -191,9 +211,6 @@
 
       if (valid) {
         $("#title").text($("input[name='post[title]']").val());
-
-        const presentationCategory = $("input[name='post[presentation_category]']:checked").closest("label").find("span").text();
-        $("#presentation_category").text(presentationCategory);
 
         const targetCategory = $("input[name='post[target_category]']:checked").closest("label").find("span").text();
         $("#target_category").text(targetCategory);
