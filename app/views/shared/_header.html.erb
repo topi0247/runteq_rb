@@ -16,6 +16,7 @@
 
       <% if role == User.roles[:admin] %>
       <li><%= link_to "管理者画面", admin_root_path %></li>
+      <li><%= link_to "応募一覧", admin_posts_path %></li>
       <% end %>
     </ul>
   </nav>
