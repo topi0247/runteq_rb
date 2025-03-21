@@ -22,5 +22,6 @@ Rails.application.routes.draw do
     resources :posts, only: %i[index show]
     root to: "users#index"
     patch "role_change" => "users#role_change"
+    resources :posts, only: %i[index]
   end
 end
