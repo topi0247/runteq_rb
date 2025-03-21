@@ -1,0 +1,15 @@
+<div class="max-w-4xl mx-auto p-6">
+  <h1 class="text-3xl font-bold mb-8 text-center">応募一覧</h1>
+  <article class="bg-white shadow-lg rounded-xl p-6 border border-orange-200">
+
+    <% if @posts.any? %>
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <% @posts.each do |post| %>
+      <%= render post, post: post %>
+      <% end %>
+    </ul>
+    <% else %>
+    <p class="text-gray-500">応募がありません。</p>
+    <% end %>
+  </article>
+</div>
