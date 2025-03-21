@@ -16,6 +16,10 @@
       <dt class="font-medium">自由登壇枠</dt>
       <dd class="text-gray-600 text-sm">自由なテーマを20分で発表する枠です。</dd>
     </div>
+    <div>
+      <dt class="font-medium">招待枠</dt>
+      <dd class="text-gray-600 text-sm">招待された方のみが登壇できる枠です。</dd>
+    </div>
   </dl>
 
   <h2 class="text-xl font-semibold text-gray-700 mb-3">NG話題</h2>
@@ -71,7 +75,7 @@
 
   <div>
     <%= form.label :content, "内容", class: "block text-gray-700 font-medium" %>
-    <p id="caption">LT枠は1000文字以下で、自由登壇枠は200～1000文字でお書きください</p>
+    <p id="caption">200～1000文字でお書きください</p>
     <%= form.text_area :content, class: "w-full p-2 border rounded-md h-100", required: true %>
     <p class="text-end">文字数 <span id="content-char-count" class="text-lg font-semibold">0</span>/1000</p>
   </div>
@@ -100,8 +104,7 @@
     <p id="title_valid_0" class="hidden">タイトルを入力してください</p>
     <p id="title_valid_1" class="hidden">タイトルは25文字以下で入力してください</p>
     <p id="content_valid_0" class="hidden">内容を入力してください</p>
-    <p id="content_valid_1" class="hidden">LT枠は、1000文字以下で内容が伝わるようにお書きください。</p>
-    <p id="content_valid_2" class="hidden">自由登壇枠と招待枠は、200～1000文字で内容をお書きください。</p>
+    <p id="content_valid_1" class="hidden">200～1000文字で内容をお書きください。</p>
   </div>
 
   <div class="mt-4 flex justify-center items-center">
@@ -113,7 +116,7 @@
       <h1 class="text-center text-xl font-bold">内容確認</h1>
       <div class="flex flex-col space-y-2 mt-4">
         <p>タイトル: <span id="title"></span></p>
-        <p>登壇カテゴリ: <span id="presentation_category"></span></p>
+        <p>登壇カテゴリ: 招待枠</span></p>
         <p>参加者ターゲット: <span id="target_category"></span></p>
         <p>内容</p>
         <p id="content" class="whitespace-pre-wrap"></p>
@@ -185,28 +188,17 @@
         $("#title_valid_1").hide();
       }
 
-      const presentationCategory = $("input[name='post[presentation_category]']:checked").val();
-      console.log(presentationCategory);
       const content = $("textarea[name='post[content]']").val();
       if (content.length === 0) {
         $("#content_valid_0").show();
         valid = false;
       } else {
         $("#content_valid_0").hide();
-        if (presentationCategory === "lt") {
-          if (content.length > 1000) {
-            $("#content_valid_1").show();
-            valid = false;
-          } else {
-            $("#content_valid_1").hide();
-          }
+        if (content.length < 200 || content.length > 1000) {
+          $("#content_valid_1").show();
+          valid = false;
         } else {
-          if (content.length < 200 || content.length > 1000) {
-            $("#content_valid_2").show();
-            valid = false;
-          } else {
-            $("#content_valid_2").hide();
-          }
+          $("#content_valid_1").hide();
         }
       }
 
@@ -219,9 +211,6 @@
 
       if (valid) {
         $("#title").text($("input[name='post[title]']").val());
-
-        const presentationCategory = $("input[name='post[presentation_category]']:checked").closest("label").find("span").text();
-        $("#presentation_category").text(presentationCategory);
 
         const targetCategory = $("input[name='post[target_category]']:checked").closest("label").find("span").text();
         $("#target_category").text(targetCategory);
