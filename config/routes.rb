@@ -20,5 +20,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: "users#index"
+    resources :posts, only: [:index]
   end
 end

@@ -1,0 +1,41 @@
+<div class="container mx-auto p-6">
+  <h1 class="text-3xl font-bold text-gray-900 mb-6 text-center">応募一覧</h1>
+  <div class="overflow-hidden rounded-lg shadow-lg bg-white max-h-[500px] overflow-y-auto">
+    <table class="w-full text-sm text-left text-gray-600">
+      <thead class="text-xs uppercase bg-orange-500 text-white sticky top-0">
+        <tr>
+          <th scope="col" class="px-6 py-2 text-lg">タイトル</th>
+          <th scope="col" class="px-6 py-2 text-lg">応募者</th>
+          <th scope="col" class="px-6 py-2 text-lg">発表カテゴリ</th>
+          <th scope="col" class="px-6 py-2 text-lg">対象カテゴリ</th>
+          <th scope="col" class="px-6 py-2 text-lg">応募日時</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @posts.each do |post| %>
+        <tr class="border-b hover:bg-orange-100 transition">
+          <td class="px-6 py-4 font-semibold text-gray-900 text-lg">
+            <%= link_to post.title, "#", class: "text-orange-500 hover:text-orange-700 font-medium cursor-not-allowed" %>
+          </td>
+          <td class="px-6 py-4 font-semibold text-gray-900 text-lg">
+            <%= post.user.name %>
+          </td>
+          <td class="px-6 py-4">
+            <span class="inline-block px-4 py-1 text-sm font-semibold text-white rounded-full <%= post.presentation_category == "lt" ? "bg-orange-400" : post.presentation_category == "proposal" ? "bg-blue-400" : "bg-gray-400" %>">
+              <%= post.presentation_category.humanize %>
+            </span>
+          </td>
+          <td class="px-6 py-4">
+            <span class="inline-block px-4 py-1 text-sm font-semibold text-white rounded-full <%= post.target_category == "beginner" ? "bg-green-400" : post.target_category == "basic" ? "bg-yellow-400" : "bg-gray-400" %>">
+              <%= post.target_category.humanize %>
+            </span>
+          </td>
+          <td class="px-6 py-4">
+            <%= post.created_at.strftime("%Y-%m-%d %H:%M") %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
