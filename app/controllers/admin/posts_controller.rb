@@ -1,8 +1,13 @@
-class Admin::PostsController < Admin::ApplicationController
+class Admin::PostsController < ApplicationController
+  # ひとまずApplicationControllerを継承
+  def index
+    @posts = Post.all.includes(:user)
+  end
+
   def show
-    @post = current_user.posts.find_by(id: params[:id])
+    @post = Post.find_by(id: params[:id])
     if @post.nil?
-      redirect_to proposal_posts_path, alert: 'プロポーザルが見つかりません。'
+      redirect_to admin_posts_path, alert: '応募が見つかりません。'
     end
   end
 end

@@ -19,8 +19,6 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    root to: "users#index"
-    resources :posts, only: %i[show]
-    resource :users, only: %i[show edit update]
+    resources :posts, only: %i[index show]
   end
 end
