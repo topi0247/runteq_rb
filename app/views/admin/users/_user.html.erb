@@ -1,0 +1,17 @@
+<tr class="border-b hover:bg-orange-100 transition">
+  <td class="px-6 py-4 flex items-center">
+    <img src="<%= user.image_url %>" alt="<%= user.name %>" class="w-14 h-14 rounded-full border-4 border-orange-400 shadow-md" />
+  </td>
+  <td class="px-6 py-4 font-semibold text-gray-900 text-lg"><%= user.name %></td>
+  <%= render "role", user: user %>
+  <td class="px-6 py-4">
+    <a href="https://x.com/<%= user.x_id %>" target="_blank" class="text-orange-500 hover:text-orange-700 font-medium">
+      <%= user.x_id %>
+    </a>
+  </td>
+  <td class="px-6 py-4">
+    <a href="<%= user.social_portfolio_url %>" target="_blank" class="text-orange-500 hover:text-orange-700 font-medium">
+      ソシャポ
+    </a>
+  </td>
+</tr>
