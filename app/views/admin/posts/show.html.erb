@@ -1,0 +1,26 @@
+<article class="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-2xl border border-gray-200">
+  <h1 class="text-3xl font-bold text-gray-800 mb-4">応募内容</h1>
+
+  <div class="bg-gray-100 p-4 rounded-lg mb-6">
+    <h2 class="text-2xl font-semibold text-blue-600"><%= @post.title %></h2>
+  </div>
+
+  <section class="space-y-4">
+    <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+      <h3 class="text-lg font-semibold text-blue-700">応募枠</h3>
+      <p class="text-gray-700"><%= @post.presentation_category_i18n %></p>
+    </div>
+
+    <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+      <h3 class="text-lg font-semibold text-green-700">ターゲット</h3>
+      <p class="text-gray-700"><%= @post.target_category_i18n %></p>
+    </div>
+
+    <div class="bg-pink-50 p-4 rounded-lg border-l-4 border-pink-500">
+      <h3 class="text-lg font-semibold text-pink-700">内容</h3>
+      <p class="text-gray-700"><%= @post.content %></p>
+    </div>
+  </section>
+
+  <%= link_to "戻る" , admin_users_path, class: "block mt-6 text-center text-blue-600 underline" %>
+</article>
