@@ -2,7 +2,7 @@
   <h1 class="text-3xl font-bold text-gray-900 mb-6 text-center">ユーザー一覧</h1>
   <div class="overflow-hidden rounded-lg shadow-lg bg-white max-h-[500px] overflow-y-auto">
     <table class="w-full text-sm text-left text-gray-600">
-      <thead class="text-xs uppercase bg-orange-500 text-white sticky top-0">
+      <thead class="text-xs uppercase bg-orange-500 text-white sticky top-0 z-10">
         <tr>
           <th scope="col" class="px-6 py-2 text-lg">アイコン</th>
           <th scope="col" class="px-6 py-2 text-lg">名前</th>
@@ -12,29 +12,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @users.each do |user| %>
-        <tr class="border-b hover:bg-orange-100 transition">
-          <td class="px-6 py-4 flex items-center">
-            <img src="<%= user.image_url %>" alt="<%= user.name %>" class="w-14 h-14 rounded-full border-4 border-orange-400 shadow-md" />
-          </td>
-          <td class="px-6 py-4 font-semibold text-gray-900 text-lg"><%= user.name %></td>
-          <td class="px-6 py-4">
-            <span class="inline-block px-4 py-1 text-sm font-semibold text-white rounded-full <%= user.role == "admin" ? "bg-orange-400" : user.role == "proposal" ? "bg-blue-400" : "bg-gray-400" %>">
-              <%= user.role.humanize %>
-            </span>
-          </td>
-          <td class="px-6 py-4">
-            <a href="https://x.com/<%= user.x_id %>" target="_blank" class="text-orange-500 hover:text-orange-700 font-medium">
-              <%= user.x_id %>
-            </a>
-          </td>
-          <td class="px-6 py-4">
-            <a href="<%= user.social_portfolio_url %>" target="_blank" class="text-orange-500 hover:text-orange-700 font-medium">
-              ソシャポ
-            </a>
-          </td>
-        </tr>
-        <% end %>
+        <%= render @users %>
       </tbody>
     </table>
   </div>
