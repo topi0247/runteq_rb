@@ -4,9 +4,7 @@
 
     <% if @posts.any? %>
     <ul class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <% @posts.each do |post| %>
-        <%= render post %>
-      <% end %>
+      <%= render @posts %>
     </ul>
     <% else %>
     <p class="text-gray-500">応募がありません。</p>
