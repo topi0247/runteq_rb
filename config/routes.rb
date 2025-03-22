@@ -21,6 +21,5 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :posts, only: %i[index show]
     root to: "users#index"
-    resources :posts, only: %i[index]
   end
 end
