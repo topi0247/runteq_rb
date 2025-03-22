@@ -1,5 +1,4 @@
-class Admin::PostsController < ApplicationController
-  # ひとまずApplicationControllerを継承
+class Admin::PostsController < Admin::ApplicationController
   def index
     @posts = Post.all.includes(:user)
   end
