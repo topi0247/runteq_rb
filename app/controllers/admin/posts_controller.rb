@@ -1,10 +1,12 @@
 class Admin::PostsController < Admin::ApplicationController
-  def show
-    @post = current_user.posts.find_by(id: params[:id])
-    if @post.nil?
-      redirect_to proposal_posts_path, alert: 'プロポーザルが見つかりません。'
-    end
   def index
     @posts = Post.includes(:user).all
+  end
+
+  def show
+    @post = Post.find_by(id: params[:id])
+    if @post.nil?
+      redirect_to admin_posts_path, alert: '応募が見つかりません。'
+    end
   end
 end

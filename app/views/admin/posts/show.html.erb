@@ -18,9 +18,16 @@
 
     <div class="bg-pink-50 p-4 rounded-lg border-l-4 border-pink-500">
       <h3 class="text-lg font-semibold text-pink-700">内容</h3>
-      <p class="text-gray-700"><%= @post.content %></p>
+      <p class="text-gray-700 whitespace-pre-wrap"><%= @post.content %></p>
+    </div>
+
+    <div class="bg-pink-50 p-4 rounded-lg border-l-4 border-gray-500">
+      <h3 class="text-lg font-semibold text-gray-700">応募者</h3>
+      <p class="text-gray-700 whitespace-pre-wrap"><%= @post.user.name %></p>
     </div>
   </section>
 
-  <%= link_to "戻る" , admin_users_path, class: "block mt-6 text-center text-blue-600 underline" %>
+  <!-- Todo:採択・不採択ボタンを追加 -->
+  <!-- Todo:候補・取り消しボタンを追加 -->
+  <%= link_to "戻る" , admin_posts_path, class: "block mt-6 text-center text-blue-600 underline" %>
 </article>

@@ -18,3 +18,14 @@
   end
   user.save!
 end
+
+User.all.each_with_index do |user, i|
+  post = user.posts.build do |p|
+    p.title = "test#{i}"
+    p.content = "test_#{i}" * 40
+    p.rule_accepted = true
+    p.presentation_category = Post.presentation_categories.keys.sample
+    p.target_category = Post.target_categories.keys.sample
+  end
+  post.save!
+end
