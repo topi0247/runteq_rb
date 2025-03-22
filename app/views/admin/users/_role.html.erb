@@ -1,0 +1,29 @@
+<td id="user-role-<%= user.id %>" class="py-4">
+  <%= form_with model: user, url: admin_role_change_path, id: "form-user-#{user.id}", class: "relative" do |f| %>
+    <%= f.select :role, User.roles.map { |k,v| [User.roles_i18n[k], k] }, { selected: user.role }, {class: "inline-block px-4 py-1 text-sm font-semibold text-white rounded-full
+      #{'bg-orange-400' if user.admin?} #{'bg-blue-400' if user.proposal?} #{'bg-green-400' if user.invitation?} #{'bg-gray-400' if user.general?}", id: "user-role-#{user.id}"} %>
+      <%= f.hidden_field :id %>
+    <%= f.submit "変更", class: "hidden absolute right-12 px-4 py-1 text-sm font-semibold text-white rounded-full bg-red-500 hover:bg-red-700 cursor-pointer", id: "user-role-submit-#{user.id}" %>
+  <% end %>
+</td>
+
+<script>
+  // NOTE: パーシャルごとにスクリプトの記述は正直どうかとおもう
+  $(function(){
+    const current_role = $("#user-role-<%= user.id %> select").val();
+    $("#user-role-<%= user.id %> select").on("change", function(){
+      const new_role = $(this).val();
+      if(current_role === new_role){
+        $("#user-role-<%= user.id %> input[type=submit]").hide();
+      }else{
+        $("#user-role-<%= user.id %> input[type=submit]").show();
+      }
+    });
+
+    $("#form-user-<%= user.id %>").on("submit", function(){
+      if(!confirm("本当に変更しますか？")){
+        return false;
+      }
+    });
+  });
+</script>
