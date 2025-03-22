@@ -20,7 +20,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: "users#index"
-    patch "role_change" => "users#role_change"
     resources :posts, only: %i[index]
     patch "role_change" => "users#role_change"
   end
