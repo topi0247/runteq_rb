@@ -10,3 +10,9 @@ ja:
         basic: "基礎・応用向け（基礎～応用）"
         developer: "アプリ開発向け（卒業制作・個人開発・ミニアプリ）"
         alumni: "実務向け（これからエンジニアになる卒業生向け）"
+    user:
+      role:
+        admin: "管理者"
+        proposal: "応募者"
+        general: "一般"
+        invitation: "招待枠"
