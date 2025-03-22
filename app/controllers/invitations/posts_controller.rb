@@ -1,4 +1,4 @@
-class Invitations::PostsController < ApplicationController
+class Invitations::PostsController < Invitations::ApplicationController
   def show
     @post = current_user.posts.find_by(id: params[:id])
     if @post.nil?
@@ -13,7 +13,7 @@ class Invitations::PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save!
-      redirect_to invitation_post_path(@post), notice: "登壇情報を投稿しました！"
+      redirect_to invitations_post_path(@post), notice: "登壇情報を投稿しました！"
     end
   rescue  => e
     Rails.logger.debug(e)

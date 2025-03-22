@@ -31,16 +31,24 @@ class SessionsController < ApplicationController
       end
 
       session[:user_id] = user.id
-
-      if is_user
-        redirect_to proposal_root_path, notice: "ログインしました"
-      else
-        redirect_to edit_proposal_users_path(user), notice: "ログインしました"
-      end
+      flash[:notice] = "ログインしました"
+      redirect_to redirect_path_for_user(user, is_user)
     rescue => e
       Rails.logger.error "SessionsController Error: #{e.message}"
       flash.now[:alert] = "ログインに失敗しました"
       redirect_to root_path, status: 500
     end
+  end
+
+  private
+
+  def redirect_path_for_user(user, is_existing_user)
+    # データベースに存在する招待枠ユーザー
+    return invitations_root_path if user.invitation? && is_existing_user
+    # データベースに存在しない招待枠ユーザー
+    return edit_invitations_users_path if user.invitation? && !is_existing_user
+    # データベースに存在しないユーザー
+    return edit_proposal_users_path unless is_existing_user
+    proposal_root_path
   end
 end
