@@ -1,0 +1,14 @@
+<h1>ユーザー編集</h1>
+
+<%= form_with model: @user, url: admin_users_path do |form| %>
+
+  <% if @user.errors.any? %>
+    <div class="space-y-1 py-2 mb-6 rounded-2xl bg-orange-50">
+      <% @user.errors.each do |error| %>
+        <p class="text-red-500 px-4"><%= error.full_message %></p>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= render "shared/user_form", form: form %>
+<% end %>
