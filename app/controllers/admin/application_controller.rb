@@ -1,9 +1,6 @@
 class Admin::ApplicationController < ApplicationController
   def require_login
-    unless current_user
-      redirect_to login_path
-      return
-    end
+    redirect_to login_path and return unless current_user
 
     unless current_user.admin?
       redirect_to root_path, alert: "権限がありません"
