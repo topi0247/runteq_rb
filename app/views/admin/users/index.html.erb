@@ -19,8 +19,13 @@
           </td>
           <td class="px-6 py-4 font-semibold text-gray-900 text-lg"><%= user.name %></td>
           <td class="px-6 py-4">
-            <span class="inline-block px-4 py-1 text-sm font-semibold text-white rounded-full <%= user.role == "admin" ? "bg-orange-400" : user.role == "proposal" ? "bg-blue-400" : "bg-gray-400" %>">
-              <%= user.role.humanize %>
+            <span class="inline-block px-4 py-1 text-sm font-semibold text-white rounded-full
+                  <%= "bg-orange-400" if user.admin? %>
+                  <%= "bg-blue-400" if user.proposal? %>
+                  <%= "bg-green-400" if user.invitation? %>
+                  <%= "bg-gray-400" if user.general? %>
+                  ">
+              <%= user.role_i18n %>
             </span>
           </td>
           <td class="px-6 py-4">
