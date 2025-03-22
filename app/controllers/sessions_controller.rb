@@ -43,6 +43,8 @@ class SessionsController < ApplicationController
   private
 
   def redirect_path_for_user(user, is_existing_user)
+    # 管理者ユーザー
+    return admin_root_path if user.admin?
     # データベースに存在する招待枠ユーザー
     return invitations_root_path if user.invitation? && is_existing_user
     # データベースに存在しない招待枠ユーザー
