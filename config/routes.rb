@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: "users#index"
-    resources :posts, only: %i[show]
+    resources :posts, only: %i[index show]
     resource :users, only: %i[show edit update]
   end
 end

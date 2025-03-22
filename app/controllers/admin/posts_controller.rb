@@ -4,5 +4,7 @@ class Admin::PostsController < Admin::ApplicationController
     if @post.nil?
       redirect_to proposal_posts_path, alert: 'プロポーザルが見つかりません。'
     end
+  def index
+    @posts = Post.includes(:user).all
   end
 end
