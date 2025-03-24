@@ -69,14 +69,14 @@
 
   <div>
     <%= form.label :title, "タイトル", class: "block text-gray-700 font-medium" %>
-    <%= form.text_field :title, class: "w-full p-2 border rounded-md", required: true %>
+    <%= form.text_field :title, class: "w-full p-2 border rounded-md", required: true, placeholder: "ここにタイトルを25文字以内で入力してください" %>
     <p class="text-end">文字数 <span id="title-char-count" class="text-lg font-semibold">0</span>/25</p>
   </div>
 
   <div>
     <%= form.label :content, "内容", class: "block text-gray-700 font-medium" %>
     <p id="caption">200～1000文字でお書きください</p>
-    <%= form.text_area :content, class: "w-full p-2 border rounded-md h-100", required: true %>
+    <%= form.text_area :content, class: "w-full p-2 border rounded-md h-100", required: true, placeholder: "ここに内容を入力してください。\n200～1000文字でお書きください。\n改行も反映されます" %>
     <p class="text-end">文字数 <span id="content-char-count" class="text-lg font-semibold">0</span>/1000</p>
   </div>
 
