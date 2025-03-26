@@ -4,14 +4,14 @@
       <div>
         <%= f.label :presentation_category_eq, "登壇枠", class: "block text-sm font-medium text-gray-700 mb-1" %>
         <%= f.select :presentation_category_eq,
-              Post.presentation_categories.keys.map { |k| [k.humanize, k] },
+              options_for_select(Post.presentation_categories.keys.map { |k| [k.humanize, k] }, params.dig(:q, :presentation_category_eq)),
               { include_blank: "すべて" },
               class: "w-full border-gray-300 rounded-md shadow-sm p-2 cursor-pointer hover:bg-orange-50 transition" %>
       </div>
       <div>
         <%= f.label :target_category_eq, "ターゲット層", class: "block text-sm font-medium text-gray-700 mb-1" %>
         <%= f.select :target_category_eq,
-              Post.target_categories.keys.map { |k| [k.humanize, k] },
+              options_for_select(Post.target_categories.keys.map { |k| [k.humanize, k] }, params.dig(:q, :target_category_eq)),
               { include_blank: "すべて" },
               class: "w-full border-gray-300 rounded-md shadow-sm p-2 cursor-pointer hover:bg-orange-50 transition" %>
       </div>
