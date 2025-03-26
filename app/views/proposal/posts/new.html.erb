@@ -69,14 +69,14 @@
 
   <div>
     <%= form.label :title, "タイトル", class: "block text-gray-700 font-medium" %>
-    <%= form.text_field :title, class: "w-full p-2 border rounded-md", required: true %>
+    <%= form.text_field :title, class: "w-full p-2 border rounded-md", required: true, placeholder: "Railsの正しいエラー処理と422の役割" %>
     <p class="text-end">文字数 <span id="title-char-count" class="text-lg font-semibold">0</span>/25</p>
   </div>
 
   <div>
     <%= form.label :content, "内容", class: "block text-gray-700 font-medium" %>
     <p id="caption">LT枠は1000文字以下で、自由登壇枠は200～1000文字でお書きください</p>
-    <%= form.text_area :content, class: "w-full p-2 border rounded-md h-100", required: true %>
+    <%= form.text_area :content, class: "w-full p-2 border rounded-md h-100", required: true, placeholder: "カリキュラムの中でなんとなく書いていた status: :unprocessable_entity について調べてみたら、思った以上に奥が深いことに気づきました。\n「エラーハンドリングって何？」\n「フォーム送信時のエラー処理で重要な役割を果たすHTTPステータスコードとは？」\n少し立ち止まって考えてみると、理解が深まり、Railsとの距離がグッと縮まりました。\n\nこのLTでは、初心者目線で以下のポイントを5分で解説します。\n\n1.なぜ200 OKではダメなのか？ \n2.422 Unprocessable Entityって何？ \n3.どうやって実装するの？Turbo環境での注意点\n\n「なんとなくrenderにつけていたけど、これって何？」\nそんな疑問からRailsの学びを一緒に深められたらと思います！" %>
     <p class="text-end">文字数 <span id="content-char-count" class="text-lg font-semibold">0</span>/1000</p>
   </div>
 
