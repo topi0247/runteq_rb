@@ -25,5 +25,6 @@ Rails.application.routes.draw do
     patch "selection" => "posts#selection"
     resources :candidates, only: %i[create destroy]
     patch "selection" => "posts#selection"
+    resources :candidates, only: %i[create destroy]
   end
 end
