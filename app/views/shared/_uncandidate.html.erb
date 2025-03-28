@@ -1,0 +1,4 @@
+<%= link_to admin_candidate_path(current_user.candidates.find_by(post_id: post.id)), id: "uncandidate-button-for-post-#{post.id}", data: { turbo_method: :delete } do %>
+  <i class="fas fa-heart unlike-btn text-pink-500"></i>
+  <%= post.candidates.count %>
+<% end %>
