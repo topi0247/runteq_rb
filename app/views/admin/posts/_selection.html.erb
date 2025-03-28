@@ -1,0 +1,8 @@
+<%= turbo_frame_tag "post-selection-#{post.id}" do %>
+  <%= form_with model: post, url: admin_selection_path, id: "form-selection-#{post.id}", class: "relative" do |f| %>
+    <%= f.select :selection, Post.selections.map { |k,v| [Post.selections_i18n[k], k] }, { selected: post.selection }, {class: "inline-block px-4 py-1 text-sm font-semibold text-white rounded-full
+      #{"bg-orange-400" if post.adoption?} #{"bg-red-200" if post.rejection?} #{"bg-blue-400" if post.pending?} #{"bg-gray-400" if post.not_selected?}", id: "post-selection-select-#{post.id}"} %>
+    <%= f.hidden_field :id %>
+    <%= f.submit "変更", class: "px-4 py-1 text-sm font-semibold text-white rounded-full bg-red-500 hover:bg-red-700 cursor-pointer", id: "post-selection-submit-#{post.id}" %>
+  <% end %>
+<% end %>

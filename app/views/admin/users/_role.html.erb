@@ -1,9 +1,11 @@
 <td id="user-role-<%= user.id %>" class="py-4">
-  <%= form_with model: user, url: admin_role_change_path, id: "form-user-#{user.id}", class: "relative" do |f| %>
-    <%= f.select :role, User.roles.map { |k,v| [User.roles_i18n[k], k] }, { selected: user.role }, {class: "inline-block px-4 py-1 text-sm font-semibold text-white rounded-full
-      #{'bg-orange-400' if user.admin?} #{'bg-blue-400' if user.proposal?} #{'bg-green-400' if user.invitation?} #{'bg-gray-400' if user.general?}", id: "user-role-#{user.id}"} %>
-      <%= f.hidden_field :id %>
-    <%= f.submit "変更", class: "hidden absolute right-0 px-4 py-1 text-sm font-semibold text-white rounded-full bg-red-500 hover:bg-red-700 cursor-pointer", id: "user-role-submit-#{user.id}" %>
+  <%= turbo_frame_tag "user-role-#{user.id}" do %>
+    <%= form_with model: user, url: admin_role_change_path, id: "form-user-#{user.id}", class: "relative" do |f| %>
+      <%= f.select :role, User.roles.map { |k,v| [User.roles_i18n[k], k] }, { selected: user.role }, {class: "inline-block px-4 py-1 text-sm font-semibold text-white rounded-full
+        #{'bg-orange-400' if user.admin?} #{'bg-blue-400' if user.proposal?} #{'bg-green-400' if user.invitation?} #{'bg-gray-400' if user.general?}", id: "user-role-select-#{user.id}"} %>
+        <%= f.hidden_field :id %>
+      <%= f.submit "変更", class: "hidden absolute right-0 px-4 py-1 text-sm font-semibold text-white rounded-full bg-red-500 hover:bg-red-700 cursor-pointer", id: "user-role-submit-#{user.id}" %>
+    <% end %>
   <% end %>
 </td>
 

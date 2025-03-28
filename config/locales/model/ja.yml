@@ -10,6 +10,11 @@ ja:
         basic: "基礎・応用向け（基礎～応用）"
         developer: "アプリ開発向け（卒業制作・個人開発・ミニアプリ）"
         alumni: "実務向け（これからエンジニアになる卒業生向け）"
+      selection:
+        not_selected: "未検討"
+        pending: "検討中"
+        rejection: "見送り"
+        adoption: "採択"
     user:
       role:
         admin: "管理者"
