@@ -1,0 +1,4 @@
+<%= link_to admin_candidates_path(post_id: post.id), id: "candidate-button-for-post-#{post.id}", data: { turbo_method: :post } do %>
+  <i class="far fa-heart like-btn" ></i>
+  <%= post.candidates.count %>
+<% end %>
