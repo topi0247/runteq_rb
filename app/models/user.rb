@@ -9,4 +9,11 @@ class User < ApplicationRecord
   validates :image_url, format: { with: URI::DEFAULT_PARSER.make_regexp }, allow_nil: true, uniqueness: true
 
   enum role: { general: 0, proposal: 1, invitation: 2 ,admin: 3 }, _default: 0
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[
+      name email role x_id social_portfolio_url
+      image_url icon_url created_at updated_at id
+    ]
+  end
 end

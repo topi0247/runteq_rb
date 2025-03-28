@@ -1,6 +1,7 @@
 class Admin::PostsController < Admin::ApplicationController
   def index
-    @posts = Post.includes(:user).all
+    @q = Post.ransack(params[:q])
+    @posts = @q.result.includes(:user).order(created_at: :desc)
   end
 
   def show
