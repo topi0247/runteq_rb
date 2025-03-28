@@ -5,8 +5,7 @@ class Admin::CandidatesController < Admin::ApplicationController
   end
 
   def destroy
-    post = current_user.candidates.find(params[:id]).post
-    current_user.uncandidate(post)
-    redirect_to request.url, flash: { success: "候補を削除しました" }, status: :see_other
+    @post = current_user.candidates.find(params[:id]).post
+    current_user.uncandidate(@post)
   end
 end
