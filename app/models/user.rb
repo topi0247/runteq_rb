@@ -1,5 +1,7 @@
 class User < ApplicationRecord
   has_many :posts
+  has_many :candidates, dependent: :destroy
+  has_many :candidate_posts, through: :candidates, source: :post
 
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
@@ -15,5 +17,15 @@ class User < ApplicationRecord
       name email role x_id social_portfolio_url
       image_url icon_url created_at updated_at id
     ]
+  def candidate(post)
+    candidate_posts << post
+  end
+
+  def uncandidate(post)
+    candidate_posts.destroy(post)
+  end
+
+  def candidate?(post)
+    candidate_posts.include?(post)
   end
 end
