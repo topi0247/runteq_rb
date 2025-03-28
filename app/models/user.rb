@@ -22,6 +22,8 @@ class User < ApplicationRecord
 
   def candidate?(post)
     candidate_posts.include?(post)
+  end
+
   def self.ransackable_attributes(auth_object = nil)
     %w[
       name email role x_id social_portfolio_url
