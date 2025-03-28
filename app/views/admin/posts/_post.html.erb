@@ -12,4 +12,5 @@
     <%= render "selection", post: post  %>
     <%= link_to '詳細を見る', admin_post_path(post), class: "text-orange-500 font-semibold hover:underline" %>
   </div>
+  <%= render "shared/candidate_button", post: post %>
 </li>

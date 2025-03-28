@@ -1,6 +1,6 @@
 <article class="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-2xl border border-gray-200">
   <%= render "shared/post_show" %>
   <!-- Todo:採択・不採択ボタンを追加 -->
-  <!-- Todo:候補・取り消しボタンを追加 -->
+  <%= render "shared/candidate_button", post: @post %>
   <%= link_to "戻る" , admin_posts_path, class: "block mt-6 text-center text-blue-600 underline" %>
 </article>
