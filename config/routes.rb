@@ -24,5 +24,6 @@ Rails.application.routes.draw do
     patch "role_change" => "users#role_change"
     patch "selection" => "posts#selection"
     resources :candidates, only: %i[create destroy]
+    patch "selection" => "posts#selection"
   end
 end
