@@ -17,6 +17,8 @@ class User < ApplicationRecord
       name email role x_id social_portfolio_url
       image_url icon_url created_at updated_at id
     ]
+  end
+
   def candidate(post)
     candidate_posts << post
   end
