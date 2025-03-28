@@ -12,6 +12,18 @@ class User < ApplicationRecord
 
   enum role: { general: 0, proposal: 1, invitation: 2 ,admin: 3 }, _default: 0
 
+  def candidate(post)
+    candidate_posts << post
+  end
+
+  def uncandidate(post)
+    candidate_posts.destroy(post)
+  end
+
+  def candidate?(post)
+    candidate_posts.include?(post)
+  end
+
   def self.ransackable_attributes(auth_object = nil)
     %w[
       name email role x_id social_portfolio_url
