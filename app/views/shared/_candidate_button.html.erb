@@ -1,0 +1,5 @@
+<% if current_user.candidate?(post) %>
+  <%= render "shared/uncandidate", post: post %>
+<% else %>
+  <%= render "shared/candidate", post: post %>
+<% end %>

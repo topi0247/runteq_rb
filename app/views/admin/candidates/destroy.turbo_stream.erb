@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "uncandidate-button-for-post-#{@post.id}" do %>
+  <%= render 'shared/candidate', post: @post %>
+<% end %>
