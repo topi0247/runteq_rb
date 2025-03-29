@@ -10,6 +10,7 @@ class Post < ApplicationRecord
 
   enum presentation_category: { lt: 0, proposal: 1, invitation: 2 }, _default: 0
   enum target_category: { beginner: 0, basic: 1, developer: 2 , alumni: 3 }, _default: 0
+  enum selection: { not_selected: 0 , pending: 1, rejection: 2, adoption: 3 }, _default: 0
 
   def self.ransackable_attributes(auth_object = nil)
     %w[
