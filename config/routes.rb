@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     root to: "users#index"
     resources :posts, only: %i[index show]
     patch "role_change" => "users#role_change"
+     patch "selection" => "posts#selection"
     resources :candidates, only: %i[create destroy]
   end
 end
