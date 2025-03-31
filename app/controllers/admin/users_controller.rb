@@ -3,24 +3,6 @@ class Admin::UsersController < Admin::ApplicationController
     @users = User.all.order(role: :desc, id: :asc)
   end
 
-  def show
-    @user = current_user
-  end
-
-  def edit
-    @user = current_user
-  end
-
-  def update
-    @user = current_user
-
-    if @user.update(user_params)
-      redirect_to admin_users_path, notice: "ユーザー情報を更新しました"
-    else
-      render :edit
-    end
-  end
-
   def role_change
     @user = User.find(user_params[:id])
     if @user.update(role: user_params[:role])
@@ -38,6 +20,6 @@ class Admin::UsersController < Admin::ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:id, :role, :name, :x_id, :social_portfolio_url, :image_url)
+    params.require(:user).permit(:id, :role)
   end
 end
