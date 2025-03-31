@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "users#index"
     resources :posts, only: %i[index show]
-    resource :users, only: %i[show edit update]
+    resource :mypages, only: %i[show edit update]
     patch "role_change" => "users#role_change"
     patch "selection" => "posts#selection"
     resources :candidates, only: %i[create destroy]
