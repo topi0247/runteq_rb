@@ -5,9 +5,13 @@
     <ul class="flex space-x-4">
       <% if current_user %>
         <% if current_user.general? %>
-          <li><%= link_to "プロポーザルに登録する", edit_proposal_users_path(current_user) %></li>
+          <% if !time_limit? %>
+            <li><%= link_to "プロポーザルに登録する", edit_proposal_users_path(current_user) %></li>
+          <% end %>
         <% elsif current_user.proposal? %>
-          <li><%= link_to "登壇応募", new_proposal_post_path %></li>
+          <% if !time_limit? %>
+            <li><%= link_to "登壇応募", new_proposal_post_path %></li>
+          <% end %>
           <li><%= link_to "マイページ", proposal_root_path %></li>
         <% elsif current_user.invitation? %>
           <li><%= link_to "登壇内容登録", new_invitations_post_path %></li>

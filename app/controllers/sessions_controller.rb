@@ -49,8 +49,11 @@ class SessionsController < ApplicationController
     return invitations_root_path if user.invitation? && is_existing_user
     # データベースに存在しない招待枠ユーザー
     return edit_invitations_users_path if user.invitation? && !is_existing_user
-    # データベースに存在しないユーザー
-    return edit_proposal_users_path unless is_existing_user
-    proposal_root_path
+    # データベースに存在しないユーザーかつ締め切り前
+    return edit_proposal_users_path unless is_existing_user || time_limit?
+    # データベースに存在するユーザー
+    return proposal_root_path if user.proposal?
+
+    top_path
   end
 end

@@ -15,4 +15,8 @@ class ApplicationController < ActionController::Base
   def require_login
     redirect_to login_path unless current_user
   end
+
+  def time_limit?
+    Time.current > Time.zone.parse('2023-04-05 06:00')
+  end
 end

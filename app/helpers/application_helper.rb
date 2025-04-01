@@ -49,4 +49,8 @@ module ApplicationHelper
   def turbo_update_flash
     turbo_stream.update "flash", partial: "shared/flash_message"
   end
+
+  def time_limit?
+    Time.current > Time.zone.parse('2023-04-05 06:00')
+  end
 end
