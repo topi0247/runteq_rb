@@ -10,4 +10,10 @@ class Proposal::ApplicationController < ApplicationController
       end
     end
   end
+
+  def proposal_time_limit?
+    if time_limit?
+      redirect_to top_path, flash: { alert: "応募期間が終了しました" }
+    end
+  end
 end

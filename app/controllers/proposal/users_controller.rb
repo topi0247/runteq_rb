@@ -34,4 +34,14 @@ class Proposal::UsersController < Proposal::ApplicationController
       redirect_to top_path, alert: '登壇応募は終了しました'
     end
   end
+
+  def enable_edit?
+    current_user.proposal? || (current_user.general? && !time_limit?)
+  end
+
+  def time_limit_redirect?
+    if !enable_edit?
+      redirect_to top_path, flash: { alert: "応募期間は終了しました" }
+    end
+  end
 end
