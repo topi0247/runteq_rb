@@ -38,4 +38,7 @@
       </div>
     </div>
   <% end %>
+  <%= link_to 'いいね数順', admin_posts_path(request.query_parameters.merge(sort_by: 'favorite')), class: "text-orange-500 font-semibold hover:underline ml-3" %>
+  /
+  <%= link_to '新しい順', admin_posts_path(request.query_parameters.merge(sort_by: '')), class: "text-orange-500 font-semibold hover:underline" %>
 </div>
