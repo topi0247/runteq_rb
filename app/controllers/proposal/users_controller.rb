@@ -1,5 +1,5 @@
 class Proposal::UsersController < Proposal::ApplicationController
-  skip_before_action :require_user_registration, only: [:edit, :update]
+  skip_before_action :require_user_registration, only: [:show, :edit, :update]
   before_action :time_limit_redirect?, only: [:edit, :update]
 
   def show
