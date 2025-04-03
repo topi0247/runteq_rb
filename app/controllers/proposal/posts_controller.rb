@@ -1,5 +1,5 @@
 class Proposal::PostsController < Proposal::ApplicationController
-  before_action :proposal_time_limit? only: %i[new create]
+  before_action :proposal_time_limit?, only: %i[new create]
 
   def show
     @post = current_user.posts.find_by(id: params[:id])
