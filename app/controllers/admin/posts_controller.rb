@@ -1,7 +1,11 @@
 class Admin::PostsController < Admin::ApplicationController
   def index
     @q = Post.ransack(params[:q])
-    @posts = @q.result.includes(:user).order(created_at: :desc)
+    @posts = if params[:sort_by] == 'favorite'
+                @q.result.includes(:candidates, :user).sort { |a,b| b.candidates.count <=> a.candidates.count }
+              else
+                @q.result.includes(:user).order(created_at: :desc)
+              end
   end
 
   def show
