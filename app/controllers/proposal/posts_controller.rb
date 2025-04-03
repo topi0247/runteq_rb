@@ -30,7 +30,7 @@ class Proposal::PostsController < Proposal::ApplicationController
   end
 
   def enable_post?
-    current_user.proposal? || (current_user.general? && !time_limit?)
+    current_user.proposal? && !time_limit?
   end
 
   def time_limit_redirect?
