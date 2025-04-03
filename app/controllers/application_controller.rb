@@ -17,6 +17,6 @@ class ApplicationController < ActionController::Base
   end
 
   def time_limit?
-    Time.current > Time.zone.parse('2023-04-05 06:00')
+    Time.current > Time.zone.parse('2025-04-05 06:00')
   end
 end
