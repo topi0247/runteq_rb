@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
   before_action :require_login
   helper_method :current_user
+  helper_method :time_limit?
 
   def current_user
     if session[:user_id]
@@ -14,5 +15,9 @@ class ApplicationController < ActionController::Base
 
   def require_login
     redirect_to login_path unless current_user
+  end
+
+  def time_limit?
+    Time.current > Time.zone.parse('2025-04-05 06:00')
   end
 end
