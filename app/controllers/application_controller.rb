@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
   before_action :require_login
   helper_method :current_user
+  helper_method :time_limit?
 
   def current_user
     if session[:user_id]

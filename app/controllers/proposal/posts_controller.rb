@@ -29,13 +29,9 @@ class Proposal::PostsController < Proposal::ApplicationController
     params.require(:post).permit(:title, :content, :rule_accepted, :presentation_category, :target_category)
   end
 
-  def enable_post?
-    current_user.proposal? && !time_limit?
-  end
-
-  def time_limit_redirect?
-    if !enable_post?
-      redirect_to top_path, flash: { alert: "応募期間は終了しました" }
+  def proposal_time_limit
+    if time_limit?
+      redirect_to proposal_root_path, alert: '登壇応募は終了しました'
     end
   end
 end
