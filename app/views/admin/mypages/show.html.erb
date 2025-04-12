@@ -24,6 +24,14 @@
           <span class="text-gray-500">未設定</span>
           <% end %>
         </li>
+        <li>
+          <span class="font-semibold">コメント:</span>
+          <% if current_user.comment.present? %>
+            <%= current_user.comment %>
+          <% else %>
+            <span class="text-gray-500">未設定</span>
+          <% end %>
+        </li>
       </ul>
     </div>
 
