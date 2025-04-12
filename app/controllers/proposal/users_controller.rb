@@ -26,7 +26,7 @@ class Proposal::UsersController < Proposal::ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :x_id, :social_portfolio_url, :image_url)
+    params.require(:user).permit(:name, :x_id, :social_portfolio_url, :image_url, :comment)
   end
 
   def proposal_time_limit
