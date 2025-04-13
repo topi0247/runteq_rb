@@ -24,10 +24,10 @@
           <span class="text-gray-500">未設定</span>
           <% end %>
         </li>
-        <li>
+        <li class="w-1/2">
           <span class="font-semibold">コメント:</span>
           <% if current_user.comment.present? %>
-            <%= current_user.comment %>
+            <p class="whitespace-pre-line break-words"><%= current_user.comment %></p>
           <% else %>
             <span class="text-gray-500">未設定</span>
           <% end %>
