@@ -2,7 +2,7 @@ class Admin::PostsController < Admin::ApplicationController
   def index
     @q = Post.ransack(params[:q])
     if params[:selection].to_i == Post.selections[:adoption]
-      @posts = Post.where(selection: Post.selections[:adoption]).sort_by(&:presentation_position)
+      @posts = Post.where(selection: Post.selections[:adoption]).order(:presentation_position)
     else
       if params[:sort_by] == 'favorite'
         @posts = @q.result.includes(:candidates, :user).sort { |a,b| b.candidates.count <=> a.candidates.count }
@@ -34,9 +34,24 @@ class Admin::PostsController < Admin::ApplicationController
     end
   end
 
+  def presentation_position
+    @post = Post.find_by(id: post_params[:id])
+    if @post.nil?
+      flash.now[:alert] = '応募が見つかりません。'
+      return
+    end
+
+    @post.presentation_position = post_params[:presentation_position].to_i
+    if @post.save
+      flash.now[:notice] = '登壇順を更新しました。'
+    else
+      flash.now[:alert] = '登壇順の更新に失敗しました。'
+    end
+  end
+
   private
 
   def post_params
-    params.require(:post).permit(:id, :selection)
+    params.require(:post).permit(:id, :selection, :presentation_position)
   end
 end

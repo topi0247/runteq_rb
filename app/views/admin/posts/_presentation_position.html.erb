@@ -1,0 +1,10 @@
+<%= turbo_frame_tag "post-presentation-position-#{post.id}" do %>
+  <%= form_with model: post, url: admin_presentation_position_path, id: "form-presentation-position-#{post.id}", class: "relative" do |f| %>
+    <div class="flex items-center justify-center gap-3">
+      <span>発表順：<%= post.presentation_position %></span>
+      <%= f.number_field :presentation_position, class: "w-16 text-center border-2 border-orange-300 outline-none rounded", id: "post-presentation-position-#{post.id}" %>
+      <%= f.submit "変更", class: "px-4 py-1 text-sm font-semibold text-white rounded-full bg-red-500 hover:bg-red-700 cursor-pointer", id: "post-presentation-position-submit-#{post.id}" %>
+    </div>
+    <%= f.hidden_field :id %>
+  <% end %>
+<% end %>
