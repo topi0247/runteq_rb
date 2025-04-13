@@ -2,34 +2,7 @@
   <h1 class="text-3xl font-bold mb-8 text-center">ユーザーページ</h1>
 
   <article class="bg-white shadow-lg rounded-xl p-6 mb-10 border border-orange-200">
-    <div class="flex flex-col md:flex-row items-center md:items-start gap-6">
-      <% if current_user.image_url.present? %>
-      <img src="<%= current_user.image_url %>" alt="ユーザー画像" class="w-28 h-28 rounded-full border-4 border-orange-400 shadow-md">
-      <% else %>
-      <div class="w-28 h-28 rounded-full bg-orange-100 flex items-center justify-center text-orange-500">
-        No Image
-      </div>
-      <% end %>
-
-      <ul class="flex-1 space-y-3 text-gray-700">
-        <li><span class="font-semibold">名前:</span> <%= current_user.name %></li>
-        <li><span class="font-semibold">X ID:</span> <%= current_user.x_id %></li>
-        <li>
-          <span class="font-semibold">ソーシャルポートフォリオ:</span>
-          <% if current_user.social_portfolio_url.present? %>
-          <a href="<%= current_user.social_portfolio_url %>" target="_blank" class="text-orange-500 hover:underline">
-            <%= current_user.social_portfolio_url %>
-          </a>
-          <% else %>
-          <span class="text-gray-500">未設定</span>
-          <% end %>
-        </li>
-      </ul>
-    </div>
-
-    <div class="mt-6 text-right">
-      <%= link_to 'プロフィールを編集', edit_proposal_users_path(current_user), class: "inline-block bg-orange-500 text-white px-5 py-2 rounded-lg text-lg shadow-md hover:bg-orange-600 transition" %>
-    </div>
+    <%= render 'shared/user_show' %>
   </article>
 
   <article class="bg-white shadow-lg rounded-xl p-6 border border-orange-200">
