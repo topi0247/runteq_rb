@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     resource :mypages, only: %i[show edit update]
     patch "role_change" => "users#role_change"
     patch "selection" => "posts#selection"
+    patch "presentation_position" => "posts#presentation_position"
     resources :candidates, only: %i[create destroy]
   end
 end
