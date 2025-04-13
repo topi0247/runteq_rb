@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_04_12_105700) do
+ActiveRecord::Schema[7.2].define(version: 2025_04_13_023526) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -34,6 +34,7 @@ ActiveRecord::Schema[7.2].define(version: 2025_04_12_105700) do
     t.integer "presentation_category", null: false
     t.integer "target_category", null: false
     t.integer "selection", default: 0
+    t.integer "presentation_position"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
