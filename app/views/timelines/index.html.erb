@@ -1,0 +1,154 @@
+<div class="max-w-6xl w-full mx-auto flex flex-col items-center justify-center gap-8">
+  <article class="bg-white shadow-md rounded-lg p-6 md:p-12">
+    <%= image_tag "サムネイル.png", alt: "event image", class: "max-w-full h-auto mx-auto" %>
+    <h1 class="text-3xl font-bold text-orange-400 mb-4 text-center my-8 md:text-4xl">RUNTEQ.rb</h1>
+    <p class="text-center leading-8 md:text-2xl md:py-4 md:leading-10">
+      RUNTEQ生による、<br class="hidden md:inline">RUNTEQ生のための、<br>Ruby, Rails, アプリ開発カンファレンス！！
+    </p>
+  </article>
+
+  <article>
+    <h2 class="text-2xl font-bold text-orange-400 mb-4 text-center my-8 md:text-3xl">イベント情報</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div>
+        <h3 class="text-xl font-bold text-orange-400 mb-4 text-center md:text-2xl">開催日時</h3>
+        <p class="text-center leading-8 md:text-xl">2025年4月26日(土) 13:00〜18:00</p>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold text-orange-400 mb-4 text-center md:text-2xl">開催場所</h3>
+        <p class="text-center leading-8 md:text-xl">
+          ZOOM<br>
+          イベントページは<a href="https://school.runteq.jp/v2/runteq_events/1311" class="text-blue-400 underline" target="_blank">こちら</a>
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <article class="bg-white shadow-md rounded-lg p-6 my-8 md:p-12 w-full">
+    <h2 class="text-2xl font-bold text-orange-400 mb-4 text-center my-8 md:text-3xl">タイムテーブル</h2>
+    <div>
+      <section class="relative border-l-4 border-orange-400">
+        <div class="pb-10 ml-6">
+          <span class="absolute w-6 h-6 bg-orange-400 rounded-full -left-3.5"></span>
+          <time class="block mb-2 text-sm font-semibold text-gray-600">13:00</time>
+          <div class="border border-orange-300 p-5 rounded">
+            <h3 class="font-bold text-lg text-orange-400">オープニング</h3>
+          </div>
+        </div>
+      </section>
+
+      <!-- 基調講演 -->
+      <%= render "timeline", post: @invitations[0], time: "13:05" %>
+
+      <!-- 小休憩 -->
+      <section class="relative border-l-4 border-orange-400">
+        <div class="pb-10 ml-6">
+          <span class="absolute w-6 h-6 bg-orange-400 rounded-full -left-3.5"></span>
+          <time class="block mb-2 text-sm font-semibold text-gray-600">13:15 <span>小休憩</span></time>
+        </div>
+      </section>
+
+      <!-- 招待枠 -->
+      <%= render "timeline", post: @invitations[1], time: "13:20" %>
+
+      <!-- 自由登壇枠 -->
+      <%= render "timeline", post: @proposals[0], time: "13:45" %>
+
+      <!-- 自由登壇枠 -->
+      <%= render "timeline", post: @proposals[1], time: "14:10" %>
+
+      <!-- 小休憩 -->
+      <section class="relative border-l-4 border-orange-400">
+        <div class="pb-10 ml-6">
+          <span class="absolute w-6 h-6 bg-orange-400 rounded-full -left-3.5"></span>
+          <time class="block mb-2 text-sm font-semibold text-gray-600">14:35 <span>小休憩</span></time>
+        </div>
+      </section>
+
+      <!-- LT枠 -->
+      <% @lts.each_with_index do |lt, index| %>
+        <% time = index === 0 ? "14:40" : "" %>
+        <%= render "timeline", post: lt, time: time %>
+      <% end %>
+
+      <!-- 休憩 -->
+      <section class="relative border-l-4 border-orange-400">
+        <div class="pb-10 ml-6">
+          <span class="absolute w-6 h-6 bg-orange-400 rounded-full -left-3.5"></span>
+          <time class="block mb-2 text-sm font-semibold text-gray-600">15:30 <span>休憩</span></time>
+        </div>
+      </section>
+
+      <!-- ワークショップ枠 -->
+      <section class="relative border-l-4 border-orange-400">
+        <div class="pb-10 ml-6">
+          <span class="absolute w-6 h-6 bg-orange-400 rounded-full -left-3.5"></span>
+          <time class="block mb-2 text-sm font-semibold text-gray-600">15:40</time>
+          <div class="border border-orange-300 p-5 rounded">
+            <div class="flex items-center space-x-4">
+              <img src="https://cdn.discordapp.com/attachments/1343513813231861884/1353340509178822726/image.jpg?ex=680198d1&is=68004751&hm=98eb1db04da0063f27c3a64219b03871d965fb20694ad133241acf59d78ef9b2&" alt="icon" class="w-16 h-16 rounded-full object-cover">
+              <div>
+                <p class="font-bold text-orange-400">ふぁらお講師 with とぴ</p>
+              </div>
+            </div>
+            <h3 class="font-bold text-lg text-orange-400 mt-4">ワークショップ<br class="sm:hidden" />：Gemを作ってみよう！</h3>
+          </div>
+        </div>
+      </section>
+
+      <!-- 自由登壇枠 -->
+      <%= render "timeline", post: @proposals[2], time: "16:05" %>
+
+      <!-- 自由登壇枠 -->
+      <%= render "timeline", post: @proposals[3], time: "16:30" %>
+
+      <!-- 休憩 -->
+      <section class="relative border-l-4 border-orange-400">
+        <div class="pb-10 ml-6">
+          <span class="absolute w-6 h-6 bg-orange-400 rounded-full -left-3.5"></span>
+          <time class="block mb-2 text-sm font-semibold text-gray-600">16:55 <span>休憩</span></time>
+        </div>
+      </section>
+
+      <!-- 自由登壇枠 -->
+      <%= render "timeline", post: @proposals[4], time: "17:05" %>
+
+      <!-- 招待枠 -->
+      <%= render "timeline", post: @invitations[2], time: "17:30" %>
+
+      <section class="relative border-l-4 border-orange-400">
+        <div class="pb-10 ml-6">
+          <span class="absolute w-6 h-6 bg-orange-400 rounded-full -left-3.5"></span>
+          <time class="block mb-2 text-sm font-semibold text-gray-600">17:55</time>
+          <div class="border border-orange-300 p-5 rounded">
+            <h3 class="font-bold text-lg text-orange-400">クロージング</h3>
+          </div>
+        </div>
+      </section>
+      <section class="relative">
+        <div class="pb-10 ml-6">
+          <span class="absolute w-6 h-6 bg-orange-400 rounded-full -left-3.5"></span>
+          <time class="block mb-2 text-sm font-semibold text-gray-600">18:00 <span>終了</span></time>
+        </div>
+      </section>
+    </div>
+  </article>
+
+  <article>
+    <h2 class="text-2xl font-bold text-orange-400 mb-4 text-center my-8 md:text-3xl">協賛</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-2">
+      <%= image_tag "RUNTEQ広告.png", alt: "event image", class: "w-[80%] object-cover mx-auto sm:w-full" %>
+      <%= image_tag "RUNTEQFes.png", alt: "event image", class: "w-[80%] object-cover mx-auto sm:w-full" %>
+      <%= image_tag "オールナイトランテック.webp", alt: "event image", class: "w-[80%] object-cover mx-auto sm:w-full" %>
+    </div>
+  </article>
+
+  <article class="bg-white shadow-md rounded-lg p-6 my-8">
+    <h2 class="text-3xl font-bold text-orange-400 mb-4 text-center my-8">主催</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      <% @admins.each do |user| %>
+        <%= render "admin", user: user %>
+      <% end %>
+    </div>
+  </article>
+</div>
