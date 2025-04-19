@@ -19,6 +19,9 @@
   user.save!
 end
 
+invitation_count = 0
+lt_count = 0
+proposal_count = 0
 User.all.each_with_index do |user, i|
   post = user.posts.build do |p|
     p.title = "test#{i}"
@@ -27,5 +30,27 @@ User.all.each_with_index do |user, i|
     p.presentation_category = Post.presentation_categories.keys.sample
     p.target_category = Post.target_categories.keys.sample
   end
+
+  if invitation_count < 3
+    post.content = "test_invitation_#{i}" * 40
+    post.presentation_position = invitation_count + 1
+    post.content = "test_invitation_#{i}" * 40
+    post.selection = Post.selections[:adoption]
+    post.presentation_category = Post.presentation_categories[:invitation]
+    invitation_count += 1
+  elsif lt_count < 5
+    post.presentation_position = lt_count + 1
+    post.content = "test_lt_#{i}" * 40
+    post.selection = Post.selections[:adoption]
+    post.presentation_category = Post.presentation_categories[:lt]
+    lt_count += 1
+  elsif proposal_count < 5
+    post.presentation_position = proposal_count + 1
+    post.content = "test_proposal_#{i}" * 40
+    post.selection = Post.selections[:adoption]
+    post.presentation_category = Post.presentation_categories[:proposal]
+    proposal_count += 1
+  end
+
   post.save!
 end

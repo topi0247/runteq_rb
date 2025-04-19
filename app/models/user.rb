@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :posts
+  has_many :posts, dependent: :destroy
   has_many :candidates, dependent: :destroy
   has_many :candidate_posts, through: :candidates, source: :post
 
