@@ -72,16 +72,24 @@
       </section>
 
       <!-- LT枠 -->
+      <section class="relative border-l-4 border-orange-400">
+        <div class="pb-10 ml-6">
+          <span class="absolute w-6 h-6 bg-orange-400 rounded-full -left-3.5"></span>
+          <time class="block mb-2 text-sm font-semibold text-gray-600">14:40</time>
+          <div class="border border-orange-300 p-5 rounded">
+            <h3 class="font-bold text-lg text-orange-400">LT</h3>
+          </div>
+        </div>
+      </section>
       <% @lts.each_with_index do |lt, index| %>
-        <% time = index === 0 ? "14:40" : "" %>
-        <%= render "timeline", post: lt, time: time %>
+        <%= render "timeline", post: lt, time: "" %>
       <% end %>
 
       <!-- 休憩 -->
       <section class="relative border-l-4 border-orange-400">
         <div class="pb-10 ml-6">
           <span class="absolute w-6 h-6 bg-orange-400 rounded-full -left-3.5"></span>
-          <time class="block mb-2 text-sm font-semibold text-gray-600">15:30</time>
+          <time class="block mb-2 text-sm font-semibold text-gray-600">15:25</time>
           <div class="p-1">
             <h3 class="font-bold text-gray-600">休憩</h3>
           </div>
@@ -95,7 +103,7 @@
           <time class="block mb-2 text-sm font-semibold text-gray-600">15:40</time>
           <div class="border border-orange-300 p-5 rounded">
             <div class="flex items-center space-x-4">
-              <img src="https://cdn.discordapp.com/attachments/1343513813231861884/1353340509178822726/image.jpg?ex=680198d1&is=68004751&hm=98eb1db04da0063f27c3a64219b03871d965fb20694ad133241acf59d78ef9b2&" alt="icon" class="w-16 h-16 rounded-full object-cover">
+                <%= image_tag "farao.jpg", alt: "icon", class: "w-16 h-16 rounded-full object-cover" %>
               <div>
                 <p class="font-bold text-orange-400">ふぁらお講師 with とぴ</p>
               </div>
