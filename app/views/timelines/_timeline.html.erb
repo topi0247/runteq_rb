@@ -10,8 +10,8 @@
         <img src="<%= post.user.image_url %>" alt="icon" class="w-16 h-16 rounded-full object-cover">
         <div>
           <p class="font-bold text-orange-400"><%= post.user.name %></p>
-          <a href="https://x.com/<%= post.user.x_id %>" class="text-sm text-blue-500 block"><%= post.user.x_id %></a>
-          <a href="<%= post.user.social_portfolio_url %>" class="text-sm text-blue-500 hover:underline block">ソシャポ</a>
+          <a href="https://x.com/<%= post.user.x_id %>" class="text-sm text-blue-500 block" target="_blank"><%= post.user.x_id %></a>
+          <a href="<%= post.user.social_portfolio_url %>" class="text-sm text-blue-500 hover:underline block" target="_blank">ソシャポ</a>
         </div>
       </div>
       <h3 class="font-bold text-lg text-orange-400 mt-4"><%= post.title %></h3>
